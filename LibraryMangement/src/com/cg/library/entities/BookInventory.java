@@ -21,12 +21,20 @@ public class BookInventory {
 	private String author1;
 	@Column(name="author2")
 	private String author2;
+	@Column(name="noOfBooks")
+	private String noOfBooks;
 	@Column(name="publisher")
 	private String publisher;
 	@Column(name="yearofpublication")
 	private String yearOfPublication;
 	
-	
+	public String getNoOfBooks() {
+		return noOfBooks;
+	}
+
+	public void setNoOfBooks(String noOfBooks) {
+		this.noOfBooks = noOfBooks;
+	}
 	public String getAuthor2() {
 		return author2;
 	}
