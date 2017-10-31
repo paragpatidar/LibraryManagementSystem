@@ -1,0 +1,8 @@
+package com.cg.library.entities;
+
+
+public class Librarian {
+
+	private static final long serialVersionUID = 1L;
+
+}
