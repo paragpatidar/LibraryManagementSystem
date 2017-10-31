@@ -8,7 +8,7 @@
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 		<properties>
 			<property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@localhost:1521:XE" />
-			<property name="javax.persistence.jdbc.user" value="System" />
+			<property name="javax.persistence.jdbc.user" value="library" />
 			<property name="javax.persistence.jdbc.password" value="Capgemini123" />
 			<property name="javax.persistence.jdbc.driver" value="oracle.jdbc.driver.OracleDriver" />
 			<property name="hibernate.hbm2ddl.auto" value="update" />

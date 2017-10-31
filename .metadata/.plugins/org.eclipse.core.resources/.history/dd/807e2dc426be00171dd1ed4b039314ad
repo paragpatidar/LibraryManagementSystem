@@ -4,7 +4,6 @@ import java.sql.Date;
 
 public class BookTransaction {
 	
-	private String transactionId;
 	private String registrationId;
 	private Date issueDate;
 	private Date returnDate;
@@ -40,14 +39,6 @@ public class BookTransaction {
 	
 	public void setFine(int fine) {
 		this.fine = fine;
-	}
-
-	public String getTransactionId() {
-		return transactionId;
-	}
-
-	public void setTransactionId(String transactionId) {
-		this.transactionId = transactionId;
 	}
 
 	@Override
