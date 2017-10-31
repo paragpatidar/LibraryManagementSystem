@@ -1,5 +1,6 @@
 package com.cg.library.dao;
 
+import java.sql.Date;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.List;
@@ -130,8 +131,7 @@ public class LibraryDaoImpl implements LibraryDao {
 		entityManager.getTransaction().begin();
 		entityManager.merge(tran);
 		entityManager.getTransaction().commit();
-		
-		this.updateBookQuan(reg.getBookId(), 1);
+		this.updateBookQuan(reg.getBookId(), 1)
 		return fine;
 	}
 	/*@Override

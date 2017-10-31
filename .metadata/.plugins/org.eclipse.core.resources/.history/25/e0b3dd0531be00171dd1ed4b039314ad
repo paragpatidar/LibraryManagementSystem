@@ -1,5 +1,6 @@
 package com.cg.library.dao;
 
+import java.sql.Date;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.List;
@@ -23,7 +24,7 @@ public class LibraryDaoImpl implements LibraryDao {
 
 
 	@Override
-	public BookInventory getBookById(String id) {
+	public BookInventory getBookById(int id) {
 		BookInventory book = entityManager.find(BookInventory.class, id);
 		return book;
 	}
@@ -101,16 +102,13 @@ public class LibraryDaoImpl implements LibraryDao {
 		return reg;
 	}
 	
-	public BookInventory updateBookQuan(String bookId,int updateBy)
+	public BookInventory updateBookQuan(int bookId,int updaetBy)
 	{
 		BookInventory inv=this.getBookById(bookId);
-		inv.setNoOfBooks(inv.getNoOfBooks()+updateBy);
-		entityManager.getTransaction().begin();
-		entityManager.merge(inv);
-		entityManager.getTransaction().commit();
+		inv.set
+		
 		return inv;
 	}
-	
 	public int returnBook(String inpRegId)
 	{
 		int fine=0;
@@ -131,7 +129,6 @@ public class LibraryDaoImpl implements LibraryDao {
 		entityManager.merge(tran);
 		entityManager.getTransaction().commit();
 		
-		this.updateBookQuan(reg.getBookId(), 1);
 		return fine;
 	}
 	/*@Override

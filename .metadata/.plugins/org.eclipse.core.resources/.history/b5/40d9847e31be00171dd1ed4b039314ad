@@ -7,7 +7,7 @@ import com.cg.library.entities.BookRegistration;
 
 public interface LibraryDao {
 
-	public abstract BookInventory getBookById(String id);
+	public abstract BookInventory getBookById(int id);
 
 	/*public abstract List<Librarian> getBookByTitle(String title);
 
