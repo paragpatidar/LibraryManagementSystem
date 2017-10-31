@@ -21,12 +21,12 @@ public class Client {
 		String password = sc.next();
 		int status = service.validateUser(userName, password);
 
-		if(status==1)//librarian************************
+		if(status==1)
 		{
 			System.out.println("Welcome "+userName+" You are librarian");
 
 			System.out.println("\n1.Display ALL Books\n2.Add a book\n3.Delete a book"
-					+ "\n4.Modify a Book\n5.Issue request\n6.Return Book");
+					+ "\n4.Modify a Book\n5.See all requests");
 			Scanner sa = new Scanner(System.in);
 			System.out.println("Please select your operation - ");
 			int choice = sa.nextInt();
@@ -63,7 +63,7 @@ public class Client {
 			default : System.out.println("You r in defau;t section");	 
 			}	
 		}
-		else if(status==0)//Student******************
+		else if(status==0)
 		{
 			System.out.println("Welcome "+userName+" You are student");
 
