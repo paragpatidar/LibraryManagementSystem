@@ -7,7 +7,6 @@ import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import com.cg.library.entities.BookInventory;
-import com.cg.library.entities.BookRegistration;
 import com.cg.library.entities.Users;
 
 public class LibraryDaoImpl implements LibraryDao {
@@ -91,14 +90,6 @@ public class LibraryDaoImpl implements LibraryDao {
 		return book;
 	}
 
-	//@Override
-	public BookRegistration validRegId(String inpRegId) 
-	{
-		BookRegistration reg = entityManager.find(BookRegistration.class, inpRegId);
-		return reg;
-	}
-	
-	
 	/*@Override
 	public List<Librarian> getBooksInPriceRange(double low,double high) {
 		String qStr = "SELECT book FROM Book book WHERE book.price between :low and :high";

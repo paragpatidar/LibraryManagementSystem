@@ -60,12 +60,7 @@ public class Client {
 				System.out.println("Book inserted with Id "+bookNew.getBookId());
 
 				break;
-			case 6:
-				System.out.println("Enter Registration Id");
-				String regId=sa.next();
-				
-				
-			default : System.out.println("Invalid choice!!!!");	 
+			default : System.out.println("You r in defau;t section");	 
 			}	
 		}
 		else if(status==0)//Student******************
