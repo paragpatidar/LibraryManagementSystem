@@ -1,0 +1,15 @@
+1508569539853	Rename package 'client'
+1508569555135	Rename package 'dao'
+1508569562483	Rename package 'entities'
+1508569569659	Rename package 'service'
+1508569724349	Rename type 'Book'
+1508570184666	Delete element
+1508570194171	Rename type 'User'
+1508576543996	Rename type 'BookService'
+1508576554809	Rename type 'BookServiceImpl'
+1508576703583	Rename type 'BookDao'
+1508576712288	Rename type 'BookDaoImpl'
+1508577254555	Delete element
+1508579282297	Copy packages
+1508579290255	Copy folder
+1508579313931	Copy files
