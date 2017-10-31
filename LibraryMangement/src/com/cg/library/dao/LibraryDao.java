@@ -15,6 +15,8 @@ public interface LibraryDao {
 
 	public abstract List<Librarian> getAuthorBooks(String author);
 */
+	public abstract BookInventory deleteBookById(String bookId);
+	
 	public abstract BookInventory insertBook(BookInventory book);
 	
 	public abstract List<BookInventory> getAllBooks();

@@ -100,6 +100,14 @@ public class LibraryDaoImpl implements LibraryDao {
 		BookRegistration reg = entityManager.find(BookRegistration.class, inpRegId);
 		return reg;
 	}
+
+
+	@Override
+	public BookInventory deleteBookById(String bookId) {
+		BookInventory book = entityManager.find(BookInventory.class, bookId);
+		entityManager.remove(book);
+		return book;
+	}
 	
 	public BookInventory updateBookQuan(String bookId,int updateBy)
 	{

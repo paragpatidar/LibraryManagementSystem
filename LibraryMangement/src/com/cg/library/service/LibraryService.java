@@ -13,6 +13,8 @@ public interface LibraryService {
 	//public abstract Long getBookCount();
 
 	//public abstract List<Librarian> getAuthorBooks(String author);
+	public abstract BookInventory deleteBookById(String bookIdDelete);
+	
 	public abstract BookInventory insertBook(BookInventory book);
 	
 	public abstract List<BookInventory> getAllBooks();

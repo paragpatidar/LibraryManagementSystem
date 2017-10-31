@@ -27,7 +27,33 @@ public class BookInventory {
 	private String yearOfPublication;
 	@Column(name="no_Of_Book")
 	private int noOfBooks;
+
 	
+	
+	public String getAuthor2() {
+		return author2;
+	}
+
+	public void setAuthor2(String author2) {
+		this.author2 = author2;
+	}
+
+	public String getPublisher() {
+		return publisher;
+	}
+
+	public void setPublisher(String publisher) {
+		this.publisher = publisher;
+	}
+
+	public String getYearOfPublication() {
+		return yearOfPublication;
+	}
+
+	public void setYearOfPublication(String yearOfPublication) {
+		this.yearOfPublication = yearOfPublication;
+	}
+
 	public String getBookId() {
 		return bookId;
 	}
@@ -51,29 +77,6 @@ public class BookInventory {
 	public void setAuthor1(String author1) {
 		this.author1 = author1;
 	}
-	
-	public String getauthor2() {
-		return author2;
-	}
-	
-	public void setauthor2(String author2) {
-		this.author2 = author2;
-	}
-	public String getPublisher() {
-		return publisher;
-	}
-
-	public void setPublisher(String publisher) {
-		this.publisher = publisher;
-	}
-
-	public String getYearOfPublication() {
-		return yearOfPublication;
-	}
-
-	public void setYearOfPublication(String yearOfPublication) {
-		this.yearOfPublication = yearOfPublication;
-	}
 
 	public int getNoOfBooks() {
 		return noOfBooks;
@@ -82,6 +85,7 @@ public class BookInventory {
 	public void setNoOfBooks(int noOfBooks) {
 		this.noOfBooks = noOfBooks;
 	}
+
 
 	@Override
 	public String toString() {

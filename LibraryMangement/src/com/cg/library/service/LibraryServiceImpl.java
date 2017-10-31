@@ -53,4 +53,9 @@ public class LibraryServiceImpl implements LibraryService {
 	public BookInventory insertBook(BookInventory book) {
 		return dao.insertBook(book);
 	}
+
+	@Override
+	public BookInventory deleteBookById(String bookId) {
+		return dao.deleteBookById(bookId);
+	}
 }
