@@ -86,7 +86,6 @@ public class LibraryDaoImpl implements LibraryDao {
 	public BookInventory insertBook(BookInventory book) {
 		entityManager.getTransaction().begin();
 		entityManager.persist(book);
-		entityManager.getTransaction().commit();
 		return book;
 	}
 

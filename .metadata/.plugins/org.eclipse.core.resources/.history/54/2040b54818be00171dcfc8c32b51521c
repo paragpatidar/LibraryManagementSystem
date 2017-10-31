@@ -78,8 +78,6 @@ public class Client {
 				for(BookInventory bookInventory:service.getAllBooks()) {
 					System.out.println(bookInventory);
 				}
-			case 2 :
-				System.out.println();
 
 			}
 

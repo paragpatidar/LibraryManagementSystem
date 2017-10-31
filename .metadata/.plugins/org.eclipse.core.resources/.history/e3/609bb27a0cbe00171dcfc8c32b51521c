@@ -43,22 +43,23 @@ public class Client {
 				System.out.println("Enter Details \n");
 				System.out.println("Enter Book Id ");
 				Scanner sb = new Scanner(System.in);
-				String bookId = sb.nextLine();
+				String bookId = sb.next();
 				bookNew.setBookId(bookId);
 				System.out.println("Enter Book Name ");
-				String bookName = sb.nextLine();
+				String bookName = sb.next();
 				bookNew.setBookName(bookName);
 				System.out.println("Enter Book Author 1 ");
 				String author1 = sb.nextLine();
+				author1 = sb.nextLine();
 				bookNew.setAuthor1(author1);
 				System.out.println("Enter Book Author 2 ");
-				String author2 = sb.nextLine();
+				String author2 = sb.next();
 				bookNew.setauthor2(author2);
 
 				bookNew = service.insertBook(bookNew);
-
+				
 				System.out.println("Book inserted with Id "+bookNew.getBookId());
-
+				
 				break;
 			default : System.out.println("You r in defau;t section");	 
 			}	
@@ -70,20 +71,9 @@ public class Client {
 			System.out.println("\n1.Display ALL Books\n2.Place a request");
 			Scanner sa = new Scanner(System.in);
 			System.out.println("Please select your operation - ");
-			int choice = sa.nextInt();
-			switch(choice)
-			{
-			case 1 : 
-				System.out.println("\n\n\n************Listing All books*************");
-				for(BookInventory bookInventory:service.getAllBooks()) {
-					System.out.println(bookInventory);
-				}
-			case 2 :
-				System.out.println();
+			//int choice = sa.nextInt();
 
-			}
-
-
+			
 		}
 		else
 		{
