@@ -6,7 +6,7 @@ import com.cg.library.entities.BookInventory;
 
 public interface LibraryService {
 
-	public abstract  BookInventory getBookById(String id);
+	public abstract  BookInventory getBookById(int id);
 
 	//public abstract List<Librarian> getBookByTitle(String title);
 

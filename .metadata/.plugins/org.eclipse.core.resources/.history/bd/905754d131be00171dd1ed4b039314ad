@@ -52,13 +52,11 @@ public class BookTransaction {
 
 	@Override
 	public String toString() {
-		return "BookTransaction [transactionId=" + transactionId
-				+ ", registrationId=" + registrationId + ", issueDate="
-				+ issueDate + ", returnDate=" + returnDate + ", fine=" + fine
-				+ "]";
-	}
+		return "BookTransaction [registrationId=" + registrationId
+				+ ", issueDate=" + issueDate + ", returnDate=" + returnDate
+				+ ", fine=" + fine + "]";
 	}
 	
 	
 
-
+}

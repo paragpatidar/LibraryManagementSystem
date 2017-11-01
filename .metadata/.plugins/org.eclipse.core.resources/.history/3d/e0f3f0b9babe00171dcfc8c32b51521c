@@ -15,7 +15,7 @@ public class LibraryServiceImpl implements LibraryService {
 	}
 
 	@Override
-	public BookInventory getBookById(String id) {
+	public BookInventory getBookById(int id) {
 		return dao.getBookById(id);
 	}
 /*
@@ -43,7 +43,7 @@ public class LibraryServiceImpl implements LibraryService {
 	public int validateUser(String userName, String password) {
 		return dao.validateUser(userName, password);
 	}
-	/*	
+/*	
 	@Override
 	public List<Librarian> getBooksInPriceRange(double low, double high){
 		return dao.getBooksInPriceRange(low, high);
