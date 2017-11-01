@@ -122,18 +122,17 @@ public class LibraryDaoImpl implements LibraryDao {
 	public int returnBook(String inpRegId)
 	{
 		int fine=0;
-		BookTransaction tran;
-		String qStr = "SELECT t FROM BookTransaction t WHERE t.registrationId='"+inpRegId+"'";
-		TypedQuery<BookTransaction> query = entityManager.createQuery(qStr, BookTransaction.class);
-		tran = query.getSingleResult();
 		BookRegistration reg=this.validRegId(inpRegId);
-		LocalDate issue=tran.getIssueDate().toLocalDate();
+		LocalDate issue=reg.getRegistrationDate().toLocalDate();
 		LocalDate today=LocalDate.now();
 		LocalDate expReturn=issue.plusDays(15);
 		int chk=Period.between(expReturn, today).getDays();
 		if(chk>0)
 			fine=chk*10;     //fine is 10rs per day*************
-		
+		BookTransaction tran;
+		String qStr = "SELECT t FROM BookTransaction t WHERE t.registrationId='"+inpRegId+"'";
+		TypedQuery<BookTransaction> query = entityManager.createQuery(qStr, BookTransaction.class);
+		tran = query.getSingleResult();
 		tran.setReturnDate(java.sql.Date.valueOf(today));
 		tran.setFine(fine);
 		entityManager.getTransaction().begin();

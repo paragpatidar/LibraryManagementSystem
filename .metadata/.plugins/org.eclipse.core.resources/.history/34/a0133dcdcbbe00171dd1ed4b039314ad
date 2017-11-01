@@ -2,27 +2,12 @@ package com.cg.library.entities;
 
 import java.sql.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
-@Entity
-@Table(name = "booksTransaction")
 public class BookTransaction {
-	@Id
-	@Column(name="transaction_id")
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	
 	private String transactionId;
-	@Column(name="registration_id")
 	private String registrationId;
-	@Column(name="issue_date")
 	private Date issueDate;
-	@Column(name="return_date")
 	private Date returnDate;
-	@Column(name="fine")
 	private int fine;
 	
 	public String getRegistrationId() {
