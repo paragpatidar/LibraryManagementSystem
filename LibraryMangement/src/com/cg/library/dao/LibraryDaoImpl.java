@@ -15,6 +15,7 @@ import com.cg.library.entities.Users;
 
 public class LibraryDaoImpl implements LibraryDao {
 
+	static public Users user = new Users();
 	private EntityManager entityManager;
 
 	public LibraryDaoImpl() {
@@ -30,31 +31,12 @@ public class LibraryDaoImpl implements LibraryDao {
 
 	/*
 	@Override
-	public List<Librarian> getBookByTitle(String title) {
-		String qStr = "SELECT book FROM Book book WHERE book.title LIKE :ptitle";
-		TypedQuery<Librarian> query = entityManager.createQuery(qStr, Librarian.class);
-		query.setParameter("ptitle", "%"+title+"%");
-		return query.getResultList();
-	}
-
-
-	@Override
 	public Long getBookCount() {
 		String qStr = "SELECT COUNT(book.id) FROM Book book";
 		TypedQuery<Long> query = entityManager.createQuery(qStr,
 				Long.class);
 		Long count = query.getSingleResult();
 		return count;
-	}
-
-
-	@Override
-	public List<Librarian> getAuthorBooks(String author) {
-		String qStr = "SELECT book FROM Book book WHERE book.author=:pAuthor";
-		TypedQuery<Librarian> query = entityManager.createQuery(qStr, Librarian.class);
-		query.setParameter("pAuthor", author);
-		List<Librarian> bookList = query.getResultList();
-		return bookList;
 	}
 	 */
 
@@ -72,12 +54,14 @@ public class LibraryDaoImpl implements LibraryDao {
 
 		String qStr = "SELECT u FROM Users u WHERE u.userName='"+userName+"' AND u.password='"+password+"'";
 		TypedQuery<Users> query = entityManager.createQuery(qStr, Users.class);
-		Users user = query.getSingleResult();
-		if(user.isLibrarian().equals("true"))
+		Users user1 = query.getSingleResult();
+		user = user1;
+		
+		if(user1.isLibrarian().equals("true"))
 		{
 			return 1;
 		}
-		else if(user.isLibrarian().equals("false"))
+		else if(user1.isLibrarian().equals("false"))
 		{	
 			return 0;
 		}
@@ -92,6 +76,10 @@ public class LibraryDaoImpl implements LibraryDao {
 		entityManager.persist(book);
 		entityManager.getTransaction().commit();
 		return book;
+	}
+	
+	public Users getUserDetails(){
+		return user;
 	}
 
 	@Override
@@ -123,7 +111,7 @@ public class LibraryDaoImpl implements LibraryDao {
 	{
 		int fine=0;
 		BookRegistration reg=this.validRegId(inpRegId);
-		LocalDate issue=reg.getRegistrationDate().toLocalDate();
+		LocalDate issue=(reg.getRegistrationDate()).toLocalDate();
 		LocalDate today=LocalDate.now();
 		LocalDate expReturn=issue.plusDays(15);
 		int chk=Period.between(expReturn, today).getDays();
@@ -142,14 +130,14 @@ public class LibraryDaoImpl implements LibraryDao {
 		this.updateBookQuan(reg.getBookId(), 1);
 		return fine;
 	}
-	/*@Override
-	public List<Librarian> getBooksInPriceRange(double low,double high) {
-		String qStr = "SELECT book FROM Book book WHERE book.price between :low and :high";
-		TypedQuery<Librarian> query = entityManager.createQuery(qStr, Librarian.class);
-		query.setParameter("low", low);
-		query.setParameter("high", high);
-		List<Librarian> bookList = query.getResultList();
-		return bookList;
-	}*/
+
+
+	@Override
+	public BookRegistration requestBook(BookRegistration bookRequest) {
+		entityManager.getTransaction().begin();
+		entityManager.persist(bookRequest);
+		entityManager.getTransaction().commit();
+		return bookRequest;
+	}
 
 }

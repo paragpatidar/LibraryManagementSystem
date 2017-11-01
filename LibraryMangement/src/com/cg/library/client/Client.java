@@ -1,20 +1,20 @@
 package com.cg.library.client;
 
-import java.sql.ResultSet;
-import java.util.List;
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.Scanner;
 
 import com.cg.library.entities.BookInventory;
+import com.cg.library.entities.BookRegistration;
 import com.cg.library.service.LibraryService;
 import com.cg.library.service.LibraryServiceImpl;
 
 public class Client {
 
-	@SuppressWarnings({ "resource" })
+	@SuppressWarnings({ "resource", "unused" })
 	public static void main(String[] args) {
 
 		LibraryService service = new LibraryServiceImpl();
-
 
 		Scanner s0 = new Scanner(System.in);
 		System.out.println("Username - ");
@@ -103,10 +103,27 @@ public class Client {
 					System.out.println(bookInventory);
 				}
 			case 2 :
-				System.out.println();
-
+				System.out.println("\n\n************Book List*************\n");
+				for(BookInventory bookInventory:service.getAllBooks()) {
+					System.out.println(bookInventory);
+				}
+				System.out.println("\nEnter Details to place a request\n");
+				Scanner sb = new Scanner(System.in);
+				System.out.println("Enter the Book Id");
+				String bookRequestId = sb.next();
+				
+				BookRegistration bookRequest = new BookRegistration();
+				
+				bookRequest.setBookId(bookRequestId);
+				bookRequest.setUserId(service.getUserDetails().getUserId());
+				LocalDate date = LocalDate.now();
+				Date dt = Date.valueOf(date);
+				bookRequest.setRegistrationDate(dt);
+				bookRequest = service.requestBook(bookRequest);
+				
+				System.out.println("Book Requested with Registration ID "+bookRequest.getRegistrationId());;
+				
 			}
-
 
 		}
 		else

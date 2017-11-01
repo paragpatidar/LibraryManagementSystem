@@ -4,17 +4,17 @@ import java.util.List;
 
 import com.cg.library.entities.BookInventory;
 import com.cg.library.entities.BookRegistration;
+import com.cg.library.entities.Users;
 
 public interface LibraryDao {
 
 	public abstract BookInventory getBookById(String id);
-
-	/*public abstract List<Librarian> getBookByTitle(String title);
-
+	/*
 	public abstract Long getBookCount();
-
-	public abstract List<Librarian> getAuthorBooks(String author);
 	 */
+	
+	public abstract Users getUserDetails();
+	
 	public abstract BookInventory deleteBookById(String bookId);
 	
 	public abstract BookInventory insertBook(BookInventory book);
@@ -22,9 +22,10 @@ public interface LibraryDao {
 	public abstract List<BookInventory> getAllBooks();
 	
 	public int validateUser(String userName, String password);
+	
+	public abstract BookRegistration requestBook(BookRegistration bookRequest);
+
 
 	BookRegistration validRegId(String inpRegId);
-
-	//public abstract List<Librarian> getBooksInPriceRange(double low, double high);
 
 }
