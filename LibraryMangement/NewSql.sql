@@ -34,3 +34,33 @@ CREATE TABLE BooksTransaction
 	return_date DATE,
 	fine NUMBER(3)
 );
+
+insert into users values('1001','Nisha','Nisha','n@n.in','true')
+/
+
+insert into BOOKSINVENTORY values ('11','Let's C',')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

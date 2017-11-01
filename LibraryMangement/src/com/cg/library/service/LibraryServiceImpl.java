@@ -5,6 +5,8 @@ import java.util.List;
 import com.cg.library.dao.LibraryDao;
 import com.cg.library.dao.LibraryDaoImpl;
 import com.cg.library.entities.BookInventory;
+import com.cg.library.entities.BookRegistration;
+import com.cg.library.entities.Users;
 
 public class LibraryServiceImpl implements LibraryService {
 
@@ -20,18 +22,8 @@ public class LibraryServiceImpl implements LibraryService {
 	}
 /*
 	@Override
-	public List<Librarian> getBookByTitle(String title) {
-		return dao.getBookByTitle(title);
-	}
-
-	@Override
 	public Long getBookCount() {
 		return dao.getBookCount();
-	}
-
-	@Override
-	public List<Librarian> getAuthorBooks(String author) {
-		return dao.getAuthorBooks(author);
 	}
 */
 	@Override
@@ -43,11 +35,6 @@ public class LibraryServiceImpl implements LibraryService {
 	public int validateUser(String userName, String password) {
 		return dao.validateUser(userName, password);
 	}
-/*	
-	@Override
-	public List<Librarian> getBooksInPriceRange(double low, double high){
-		return dao.getBooksInPriceRange(low, high);
-	}*/
 
 	@Override
 	public BookInventory insertBook(BookInventory book) {
@@ -57,5 +44,20 @@ public class LibraryServiceImpl implements LibraryService {
 	@Override
 	public BookInventory deleteBookById(String bookId) {
 		return dao.deleteBookById(bookId);
+	}
+
+	@Override
+	public Users getUserDetails() {
+		return dao.getUserDetails();
+	}
+
+	@Override
+	public BookRegistration requestBook(BookRegistration bookRequest) {
+		return dao.requestBook(bookRequest);
+	}
+	@Override
+	public int returnBook(int inpRegId)
+	{
+		return dao.returnBook(inpRegId);
 	}
 }
