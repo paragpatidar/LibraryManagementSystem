@@ -5,14 +5,19 @@ import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="booksRegistration")
+@NamedQueries(@NamedQuery(name = "getAllRequests", query = "SELECT request FROM BookRegistration request"))
 public class BookRegistration {
 
 	@Id
@@ -20,7 +25,6 @@ public class BookRegistration {
 	@SequenceGenerator(name="reg_id_seq", initialValue = 1000)
 	@GeneratedValue(strategy=GenerationType.SEQUENCE,generator="reg_id_seq")
 	private int registrationId;
-	
 	@Column(name="book_id")
 	private String bookId;
 	@Column(name="user_id")
@@ -62,9 +66,9 @@ public class BookRegistration {
 
 	@Override
 	public String toString() {
-		return "BookRegistration [registrationId=" + registrationId
-				+ ", bookId=" + bookId + ", userId=" + userId
-				+ ", registrationDate=" + registrationDate + "]";
+		return "Registration Id : " + registrationId
+				+ ", Book Id : " + bookId + ", User ID : " + userId
+				+ ", Registration Date : " + registrationDate;
 	}
 	
 	

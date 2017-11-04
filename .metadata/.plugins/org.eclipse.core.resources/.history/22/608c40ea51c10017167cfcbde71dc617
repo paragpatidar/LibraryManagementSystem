@@ -1,0 +1,162 @@
+package com.cg.library.client;
+
+import java.sql.Date;
+import java.time.LocalDate;
+import java.util.Scanner;
+
+import com.cg.library.entities.BookInventory;
+import com.cg.library.entities.BookRegistration;
+import com.cg.library.exception.LibraryException;
+import com.cg.library.service.ILibraryService;
+import com.cg.library.service.LibraryServiceImpl;
+
+public class Client {
+	@SuppressWarnings({ "resource"})
+	public static void main(String[] args) throws LibraryException {
+
+		String ans="",ans1="";
+		ILibraryService service = new LibraryServiceImpl();
+		System.out.println("Welcome to Capgemini Library\n");
+		do{
+			Scanner s0 = new Scanner(System.in);
+			System.out.println("Username - ");
+			String userName = s0.next();
+			System.out.println("Password - ");
+			String password = s0.next();
+			int status;
+			try {
+				status = service.validateUser(userName, password);
+				do{
+					if(status==1)//librarian************************
+					{
+						System.out.println("\nWelcome "+userName);
+						System.out.println("\t1.Display ALL Books\n\t2.Add a book\n\t3.Delete a book"
+								+ "\n\t4.Issue request\n\t5.Return Book");
+						Scanner sa = new Scanner(System.in);
+						System.out.println("\nPlease select your operation - ");
+						int choice = sa.nextInt();
+
+						switch(choice)
+						{
+						case 1 : 
+							System.out.println("\n\n************Book List*************\n\n");
+							for(BookInventory bookInventory:service.getAllBooks()) {
+								System.out.println(bookInventory);
+							}
+							break;
+						case 2 :
+							try{
+								BookInventory bookNew = new BookInventory();
+								System.out.println("\nEnter Details ");
+								System.out.println("Enter Book Id ");
+								Scanner sb = new Scanner(System.in);
+								String bookId = sb.nextLine();
+								bookNew.setBookId(bookId);
+								System.out.println("Enter Book Name ");
+								String bookName = sb.nextLine();
+								bookNew.setBookName(bookName);
+								System.out.println("Enter Book Author 1 ");
+								String author1 = sb.nextLine();
+								bookNew.setAuthor1(author1);
+								System.out.println("Enter Book Author 2 ");
+								String author2 = sb.nextLine();
+								bookNew.setAuthor2(author2);
+								System.out.println("Enter Book Publisher ");
+								String publisher = sb.nextLine();
+								bookNew.setPublisher(publisher);
+								System.out.println("Enter Year of Publication ");
+								String yearOfPublication=sb.nextLine();
+								bookNew.setYearOfPublication(yearOfPublication);
+								bookNew = service.insertBook(bookNew);
+								System.out.println("\nBook inserted with Id "+bookNew.getBookId());
+							}catch(LibraryException le){
+								System.err.println(le.getMessage());
+							}	
+							break;
+						case 3 : 
+							Scanner sc = new Scanner(System.in);
+							System.out.println("\nEnter Book Id to be deleted - ");
+							String bookIdDelete = sc.next();
+							BookInventory bookDeleted;
+							try {
+								bookDeleted = service.deleteBookById(bookIdDelete);
+								if(bookDeleted != null)
+									System.out.println("\nBook with Id "+bookDeleted.getBookId()+" deleted successfully");
+							} catch (LibraryException e) {
+								System.err.println(e.getMessage());
+							}
+							break;
+						case 4 :
+							try {
+								System.out.println("\nEnter the registration Id");
+								int regId1 = sa.nextInt();
+								service.issueBook(regId1);
+							} catch (LibraryException e) {
+								System.err.println(e.getMessage());
+							}
+							break;
+						case 5:
+							System.out.println("\nEnter Registration Id");
+							int regId=sa.nextInt();
+							int fine=service.returnBook(regId);
+							if(fine != -1){
+								System.out.println("\nFine is Rs: "+fine);
+								System.out.println("Book Returned!!");
+							}
+							break;
+						default : System.out.println("You r in default section");	 
+
+						}
+					}
+					else if(status==0)//Student******************
+					{
+						System.out.println("Welcome "+userName);
+						System.out.println("\t1.Display ALL Books\n\t2.Place a request");
+						Scanner sa = new Scanner(System.in);
+						System.out.println("\nPlease select your operation - ");
+						int choice = sa.nextInt();
+						switch(choice)
+						{
+						case 1 : 
+							System.out.println("\n\n************Book List*************\n\n");
+							for(BookInventory bookInventory:service.getAllBooks()) {
+								System.out.println(bookInventory);
+							}
+						case 2 :
+							try {
+								System.out.println("\nEnter Details to place a request\n");
+								Scanner sb = new Scanner(System.in);
+								System.out.println("Enter the Book Id");
+								String bookRequestId = sb.next();
+								BookRegistration bookRequest = new BookRegistration();
+								bookRequest.setBookId(bookRequestId);
+								bookRequest.setUserId(service.getUserDetails().getUserId());
+								LocalDate date = LocalDate.now();
+								Date dt = Date.valueOf(date);
+								bookRequest.setRegistrationDate(dt);
+								bookRequest = service.requestBook(bookRequest);
+								System.out.println("\nBook Requested with Registration ID "+bookRequest.getRegistrationId());
+							} catch (LibraryException e) {
+								System.err.println("No Book Exists");
+							}
+							break;
+						default:
+							System.out.println("CHOOSE THE APPROPRIATE OPTION");
+						}
+					}
+					Scanner se = new Scanner(System.in);
+					System.out.println("\nDo You want to continue(y/n) : ");
+					ans = se.next();
+				}
+				while(ans.equals("y")||ans.equals("Y"));
+			} catch (LibraryException e) {
+				System.err.println(e.getMessage());
+			}
+			System.out.println("\nDo you want to login again(y/n) : ");
+			ans1 = s0.next();
+		}
+		while(ans1.equals("y")||ans1.equals("Y"));
+		System.out.println("Thank You for Visiting");
+
+	}
+}

@@ -1,0 +1,224 @@
+package com.cg.library.dao;
+
+import java.time.LocalDate;
+import java.time.Period;
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
+import javax.persistence.PersistenceException;
+import javax.persistence.Query;
+import javax.persistence.TypedQuery;
+
+import org.apache.log4j.Logger;
+
+import com.cg.library.entities.BookInventory;
+import com.cg.library.entities.BookRegistration;
+import com.cg.library.entities.BookTransaction;
+import com.cg.library.entities.Users;
+import com.cg.library.exception.LibraryException;
+
+public class LibraryDaoImpl implements ILibraryDao {
+
+	private static Logger logger = Logger.getLogger(com.cg.library.dao.LibraryDaoImpl.class);
+	static public Users user = new Users();
+	private EntityManager entityManager;
+
+	public LibraryDaoImpl() {
+		entityManager = JPAUtil.getEntityManager();
+	}
+
+	@Override
+	public BookInventory getBookById(String id) {
+		BookInventory book = entityManager.find(BookInventory.class, id);
+		return book;
+	}
+
+	@Override
+	public List<BookInventory> getAllBooks() {
+		Query query = entityManager.createNamedQuery("getAllBooks");
+		@SuppressWarnings("unchecked")
+		List<BookInventory> bookList = query.getResultList();
+		return bookList;
+	}
+	
+	@Override
+	public List<BookRegistration> getAllRequest(){
+		Query query = entityManager.createNamedQuery("getAllRequests");
+		@SuppressWarnings("unchecked")
+		List<BookRegistration> requestList = query.getResultList();
+		return requestList;
+	}
+
+	@Override
+	public int getCountOfBooks(String bookId){
+		String qStr = "SELECT t FROM BookInventory t WHERE t.bookId="+bookId;
+		TypedQuery<BookInventory> query1 = entityManager.createQuery(qStr, BookInventory.class);
+		BookInventory booksInventory = query1.getSingleResult();
+		return booksInventory.getNoOfBooks();
+	}
+	
+	@Override
+	public int validateUser(String userName, String password) throws LibraryException{
+
+		try {
+			String qStr = "SELECT u FROM Users u WHERE u.userName='"+userName+"' AND u.password='"+password+"'";
+			TypedQuery<Users> query = entityManager.createQuery(qStr, Users.class);
+			Users user1 = query.getSingleResult();
+			user = user1;
+			logger.info("Valid User with user ID : "+user1.getUserId());
+			if(user1.isLibrarian().equals("true"))
+			{
+				return 1;
+			}
+			else
+			{	
+				return 0;
+			}	
+		} catch (NoResultException e) {
+			logger.error(e.getMessage());
+			throw new LibraryException("User does not exists");
+		}
+
+	}
+
+	@Override
+	public BookInventory insertBook(BookInventory book) throws LibraryException {
+		try{
+			entityManager.getTransaction().begin();
+			entityManager.persist(book);
+			entityManager.getTransaction().commit();
+			logger.info("Book Inserted with Book ID : "+book.getBookId());
+			return book;
+		}catch(PersistenceException pe){
+			logger.error(pe.getMessage());
+			throw new LibraryException(pe.getMessage());
+		}
+	}
+
+	public Users getUserDetails(){
+		return user;
+	}
+
+	@Override
+	public BookRegistration validRegId(int inpRegId) throws LibraryException{
+		try{
+		BookRegistration reg = entityManager.find(BookRegistration.class, inpRegId);
+		logger.info("Valid Registration ID");
+		return reg;
+		}catch(NoResultException ne){
+			logger.error(ne.getMessage());
+			throw new LibraryException("Invlid Registration Id");
+		}
+	}
+
+	@Override
+	public BookInventory deleteBookById(String bookId) throws LibraryException {
+		BookInventory book = null;
+		try {
+			book = entityManager.find(BookInventory.class, bookId);
+			entityManager.remove(book);
+			logger.info("Book with Id: "+bookId+" deleted successfully");
+			return book;	
+		} catch (IllegalArgumentException e) {
+			logger.error(e.getMessage());
+			throw new LibraryException("No Such Book Exists");
+		}
+	}
+	
+	@Override
+	public BookInventory updateBookQuan(String bookId,int updateBy) throws LibraryException
+	{
+		try{
+			BookInventory inv=this.getBookById(bookId);
+			inv.setNoOfBooks(inv.getNoOfBooks()+updateBy);
+			entityManager.getTransaction().begin();
+			entityManager.merge(inv);
+			entityManager.getTransaction().commit();
+			logger.info("Book with Id: "+bookId+" updated successfully");
+			return inv;
+		}catch(PersistenceException pe){
+			logger.error(pe.getMessage());
+			throw new LibraryException(pe.getMessage());
+		}
+	}
+
+	@Override
+	public void issueBook(int registrationId) throws LibraryException {
+		try {
+			String qStr = "SELECT t FROM BookRegistration t WHERE t.registrationId="+registrationId;
+			TypedQuery<BookRegistration> query = entityManager.createQuery(qStr, BookRegistration.class);
+			BookRegistration registration = query.getSingleResult();
+			BookTransaction bookTransaction = new BookTransaction();
+			bookTransaction.setRegistrationId(registrationId);
+			bookTransaction.setReturnDate(null);
+
+			entityManager.getTransaction().begin();
+			entityManager.persist(bookTransaction);
+
+			qStr = "SELECT t FROM BookInventory t WHERE t.bookId="+registration.getBookId();
+			TypedQuery<BookInventory> query1 = entityManager.createQuery(qStr, BookInventory.class);
+			BookInventory booksInventory = query1.getSingleResult();
+			booksInventory.setNoOfBooks(booksInventory.getNoOfBooks()-1);		
+			entityManager.merge(booksInventory);
+			entityManager.getTransaction().commit();
+			
+			logger.info("Book issued with registration ID: "+registrationId);
+			
+		} catch (NoResultException e) {
+			logger.error(e.getMessage());
+			throw new LibraryException("No such registration Id available");
+		}catch(PersistenceException pe){
+			logger.error(pe.getMessage());
+			throw new LibraryException(pe.getMessage());
+		}
+	}
+
+	@Override
+	public int returnBook(int inpRegId) throws LibraryException
+	{
+		int fine=-1;
+
+		try {
+			BookTransaction tran;
+			String qStr = "SELECT t FROM BookTransaction t WHERE t.registrationId="+inpRegId;
+			TypedQuery<BookTransaction> query = entityManager.createQuery(qStr, BookTransaction.class);
+			tran = query.getSingleResult();
+			fine = 0;
+			BookRegistration reg=this.validRegId(inpRegId);
+			LocalDate issue=tran.getIssueDate().toLocalDate();
+			LocalDate today=LocalDate.now();
+			LocalDate expReturn=issue.plusDays(15);
+			int chk=Period.between(expReturn, today).getDays();
+			if(chk > 0)
+				fine=chk*10;     //fine is 10rs per day*************
+
+			tran.setReturnDate(java.sql.Date.valueOf(today));
+			tran.setFine(fine);
+			entityManager.getTransaction().begin();
+			entityManager.merge(tran);
+			entityManager.getTransaction().commit();
+
+			this.updateBookQuan(reg.getBookId(), 1);
+			logger.info("Book returned with registration ID: "+inpRegId);
+		} catch (NoResultException e) {
+			logger.error(e.getMessage());
+			throw new LibraryException("No such registration Id available");
+		}
+		return fine;			
+	}
+
+	@Override
+	public BookRegistration requestBook(BookRegistration bookRequest) throws LibraryException {
+		try{
+			entityManager.getTransaction().begin();
+			entityManager.persist(bookRequest);
+			entityManager.getTransaction().commit();
+			logger.info("Book requested for user ID"+bookRequest.getUserId());
+			return bookRequest;
+		}catch(PersistenceException pe){
+			logger.error(pe.getMessage());
+			throw new LibraryException(pe.getMessage());
+		}
+	}
+}

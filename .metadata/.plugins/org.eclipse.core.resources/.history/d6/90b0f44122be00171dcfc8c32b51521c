@@ -1,7 +1,0 @@
-package com.cg.library.client;
-
-public class Snippet {
-	INSERT INTO BOOKSINVENTORY values ('1001','Let Us C','Yashwant','Kanetkar','TMH','2014')
-	/
-}
-

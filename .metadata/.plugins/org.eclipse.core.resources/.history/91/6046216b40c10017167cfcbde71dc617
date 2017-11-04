@@ -1,0 +1,28 @@
+package com.cg.library.service;
+
+import java.util.List;
+
+import com.cg.library.entities.BookInventory;
+import com.cg.library.entities.BookRegistration;
+import com.cg.library.entities.Users;
+
+public interface ILibraryService {
+
+	public abstract  BookInventory getBookById(String id);
+
+	public abstract Users getUserDetails();
+
+	public abstract BookInventory deleteBookById(String bookIdDelete);
+	
+	public abstract BookInventory insertBook(BookInventory book);
+	
+	public abstract List<BookInventory> getAllBooks();
+	
+	public abstract BookRegistration requestBook(BookRegistration bookRequest);
+	
+	public int validateUser(String userName, String password);
+
+	public abstract int returnBook(int inpRegId);
+	
+	public abstract void issueBook(int registrationId);
+}

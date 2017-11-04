@@ -2,22 +2,23 @@ package com.cg.library.service;
 
 import java.util.List;
 
-import com.cg.library.dao.LibraryDao;
+import com.cg.library.dao.ILibraryDao;
 import com.cg.library.dao.LibraryDaoImpl;
 import com.cg.library.entities.BookInventory;
 import com.cg.library.entities.BookRegistration;
 import com.cg.library.entities.Users;
+import com.cg.library.exception.LibraryException;
 
-public class LibraryServiceImpl implements LibraryService {
+public class LibraryServiceImpl implements ILibraryService {
 
-	private LibraryDao dao;
+	private ILibraryDao dao;
 
 	public LibraryServiceImpl() {
 		dao = new LibraryDaoImpl();
 	}
 
 	@Override
-	public BookInventory getBookById(String id) {
+	public BookInventory getBookById(String id) throws LibraryException {
 		return dao.getBookById(id);
 	}
 /*
@@ -27,32 +28,52 @@ public class LibraryServiceImpl implements LibraryService {
 	}
 */
 	@Override
-	public List<BookInventory> getAllBooks() {
+	public List<BookInventory> getAllBooks() throws LibraryException {
 		return dao.getAllBooks();
 	}
 	
 	@Override
-	public int validateUser(String userName, String password) {
+	public int validateUser(String userName, String password) throws LibraryException {
 		return dao.validateUser(userName, password);
 	}
 
 	@Override
-	public BookInventory insertBook(BookInventory book) {
+	public BookInventory insertBook(BookInventory book) throws LibraryException {
 		return dao.insertBook(book);
 	}
 
 	@Override
-	public BookInventory deleteBookById(String bookId) {
+	public BookInventory deleteBookById(String bookId) throws LibraryException {
 		return dao.deleteBookById(bookId);
 	}
 
 	@Override
-	public Users getUserDetails() {
+	public Users getUserDetails() throws LibraryException {
 		return dao.getUserDetails();
 	}
 
 	@Override
-	public BookRegistration requestBook(BookRegistration bookRequest) {
+	public BookRegistration requestBook(BookRegistration bookRequest) throws LibraryException {
+		if(dao.getBookById(bookRequest.getBookId()) == null){
+			return null;
+		}else if(dao.getCountOfBooks(bookRequest.getBookId()) == 0){
+			return null;
+		}
 		return dao.requestBook(bookRequest);
+	}
+	@Override
+	public int returnBook(int inpRegId) throws LibraryException
+	{
+		return dao.returnBook(inpRegId);
+	}
+
+	@Override
+	public void issueBook(int registrationId) throws LibraryException {
+		dao.issueBook(registrationId);
+	}
+
+	@Override
+	public List<BookRegistration> getAllRequest() throws LibraryException {
+		return dao.getAllRequest();
 	}
 }

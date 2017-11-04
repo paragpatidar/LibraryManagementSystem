@@ -26,7 +26,7 @@ public class BookInventory {
 	@Column(name="yearofpublication")
 	private String yearOfPublication;
 	@Column(name="no_Of_Book")
-	private int noOfBooks;
+	private Integer noOfBooks;
 
 	
 	
@@ -89,10 +89,10 @@ public class BookInventory {
 
 	@Override
 	public String toString() {
-		return "BookInventory [bookId=" + bookId + ", bookName=" + bookName
-				+ ", author1=" + author1 + ", author2=" + author2
-				+ ", publisher=" + publisher + ", yearOfPublication="
-				+ yearOfPublication + ", noOfBooks=" + noOfBooks + "]";
+		return "Book Id : " + bookId + ", Book Name : " + bookName
+				+ ", Author1 : " + author1 + ", Author2 : " + author2
+				+ ", Publisher : " + publisher + ", Year of Publication : "
+				+ yearOfPublication + ", No of Books : " + noOfBooks;
 	}
 
 }

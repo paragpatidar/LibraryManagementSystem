@@ -1,9 +1,0 @@
-CREATE TABLE BooksRegistration
-(
-	registration_id VARCHAR2(4), 
-	book_id VARCHAR2(4), 
-	user_id VARCHAR2(4), 
-	registrationdate DATE
-)
-
-insert into users values ('111','himan','himan','himan@gmail.com','false')
