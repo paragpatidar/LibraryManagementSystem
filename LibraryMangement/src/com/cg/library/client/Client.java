@@ -23,7 +23,7 @@ public class Client {
 			String userName = s0.next();
 			System.out.println("Password - ");
 			String password = s0.next();
-			int status;
+				int status;
 			try {
 				status = service.validateUser(userName, password);
 				do{
@@ -39,7 +39,7 @@ public class Client {
 						switch(choice)
 						{
 						case 1 : 
-							System.out.println("\n\n************Book List*************\n\n");
+							System.out.println("\n\n******************Book List***************\n\n");
 							for(BookInventory bookInventory:service.getAllBooks()) {
 								System.out.println(bookInventory);
 							}
@@ -52,26 +52,30 @@ public class Client {
 								Scanner sb = new Scanner(System.in);
 								String bookId = sb.nextLine();
 								bookNew.setBookId(bookId);
-								System.out.println("Enter Book Name ");
+								System.out.println("Enter Book Name -");
 								String bookName = sb.nextLine();
 								bookNew.setBookName(bookName);
-								System.out.println("Enter Book Author 1 ");
+								System.out.println("Enter Book Author 1 -");
 								String author1 = sb.nextLine();
 								bookNew.setAuthor1(author1);
-								System.out.println("Enter Book Author 2 ");
+								System.out.println("Enter Book Author 2 -");
 								String author2 = sb.nextLine();
 								bookNew.setAuthor2(author2);
-								System.out.println("Enter Book Publisher ");
+								System.out.println("Enter Book Publisher -");
 								String publisher = sb.nextLine();
 								bookNew.setPublisher(publisher);
-								System.out.println("Enter Year of Publication ");
+								System.out.println("Enter Year of Publication - ");
 								String yearOfPublication=sb.nextLine();
 								bookNew.setYearOfPublication(yearOfPublication);
+								System.out.println("Enter no. of Books - ");
+								bookNew.setNoOfBooks(sb.nextInt());
 								bookNew = service.insertBook(bookNew);
 								System.out.println("\nBook inserted with Id "+bookNew.getBookId());
 							}catch(LibraryException le){
 								System.err.println(le.getMessage());
-							}	
+							}catch(Exception e){
+								System.err.println("Enter valid Data");
+							}
 							break;
 						case 3 : 
 							Scanner sc = new Scanner(System.in);
@@ -88,7 +92,7 @@ public class Client {
 							break;
 						case 4 :
 							try {
-								System.out.println("\n************Request List*************\n");
+								System.out.println("\n****************Request List****************\n");
 								for(BookRegistration bookRequest:service.getAllRequest()) {
 									System.out.println(bookRequest);
 								}

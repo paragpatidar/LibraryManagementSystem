@@ -17,7 +17,7 @@ CREATE TABLE Users
 
 CREATE TABLE BooksInventory
 (
-	book_id VARCHAR2(4), 
+	book_id VARCHAR2(4) unique, 
 	book_name VARCHAR2(20), 
 	author1 VARCHAR2(15),
 	author2 VARCHAR2(15),
@@ -37,7 +37,7 @@ CREATE TABLE BooksRegistration
 CREATE TABLE BooksTransaction
 (
 	transaction_id Number(4),
-    registration_id Number(4), 
+    registration_id Number(4) unique, 
 	issue_date DATE default sysdate,
 	return_date DATE,
 	fine NUMBER(3)
@@ -52,14 +52,22 @@ INSERT INTO USERS values ('102','akash','akash','akash@gmail.com','false');
 
 INSERT INTO USERS values ('103','himan','himan','himan@gmail.com','false');
 
+TRUNCATE table BooksInventory;
+
 INSERT INTO BOOKSINVENTORY values ('1001','Let Us C','Yashwant','Kanetkar','TMH','2014',3);
 
 INSERT INTO BOOKSINVENTORY values ('1002','Spring MVC Demo','Parag','Patidar','ABC','2017',4);
 
 INSERT INTO BOOKSINVENTORY values ('1003','Its all Fun','Vishesh','Kushwah','BCS','2012',5);
 
-INSERT INTO BOOKSINVENTORY values ('1004','Harry Potter','J.K Rowling',' ','Penguin','2011',6);
+INSERT INTO BOOKSINVENTORY values ('1004','Harry Potter','J.K Rowling','Harry','Penguin','2011',6);
 
 INSERT INTO BOOKSINVENTORY values ('1005','Complete Java','Hilbert','Kanetkar','Oracle','2014',7);
+
+INSERT INTO BOOKSINVENTORY values ('1006','Electical Machines','Nisha','Debolina','TMH','2007',5);
+
+INSERT INTO BOOKSINVENTORY values ('1007','Microprocessor','Vinay Manchala','Goenkar','XYZ','2001',5);
+
+INSERT INTO BOOKSINVENTORY values ('1008','Computer Architechture','K.L Anand','Uska Dost','Penguin','2015',6);
 
 commit;

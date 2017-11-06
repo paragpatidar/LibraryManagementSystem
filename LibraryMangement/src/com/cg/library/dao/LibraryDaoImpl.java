@@ -1,5 +1,6 @@
 package com.cg.library.dao;
 
+import java.sql.Date;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.List;
@@ -41,7 +42,7 @@ public class LibraryDaoImpl implements ILibraryDao {
 		List<BookInventory> bookList = query.getResultList();
 		return bookList;
 	}
-	
+
 	@Override
 	public List<BookRegistration> getAllRequest(){
 		Query query = entityManager.createNamedQuery("getAllRequests");
@@ -61,7 +62,7 @@ public class LibraryDaoImpl implements ILibraryDao {
 			throw new LibraryException("Book doesn't exists");
 		}
 	}
-	
+
 	@Override
 	public int validateUser(String userName, String password) throws LibraryException{
 
@@ -89,10 +90,17 @@ public class LibraryDaoImpl implements ILibraryDao {
 	@Override
 	public BookInventory insertBook(BookInventory book) throws LibraryException {
 		try{
-			entityManager.getTransaction().begin();
-			entityManager.persist(book);
-			entityManager.getTransaction().commit();
-			logger.info("Book Inserted with Book ID : "+book.getBookId());
+
+			BookInventory book1 = this.getBookById(book.getBookId());
+			if(book1==null){
+				entityManager.getTransaction().begin();
+				entityManager.persist(book);
+				entityManager.getTransaction().commit();
+				logger.info("Book Inserted with Book ID : "+book.getBookId());
+				}
+			else{
+				this.updateBookQuan(book.getBookId(), book.getNoOfBooks());
+			}
 			return book;
 		}catch(PersistenceException pe){
 			logger.error(pe.getMessage());
@@ -107,9 +115,9 @@ public class LibraryDaoImpl implements ILibraryDao {
 	@Override
 	public BookRegistration validRegId(int inpRegId) throws LibraryException{
 		try{
-		BookRegistration reg = entityManager.find(BookRegistration.class, inpRegId);
-		logger.info("Valid Registration ID");
-		return reg;
+			BookRegistration reg = entityManager.find(BookRegistration.class, inpRegId);
+			logger.info("Valid Registration ID");
+			return reg;
 		}catch(NoResultException ne){
 			logger.error(ne.getMessage());
 			throw new LibraryException("Invlid Registration Id");
@@ -121,7 +129,9 @@ public class LibraryDaoImpl implements ILibraryDao {
 		BookInventory book = null;
 		try {
 			book = entityManager.find(BookInventory.class, bookId);
+			entityManager.getTransaction().begin();
 			entityManager.remove(book);
+			entityManager.getTransaction().commit();
 			logger.info("Book with Id: "+bookId+" deleted successfully");
 			return book;	
 		} catch (IllegalArgumentException e) {
@@ -129,7 +139,7 @@ public class LibraryDaoImpl implements ILibraryDao {
 			throw new LibraryException("No Such Book Exists");
 		}
 	}
-	
+
 	@Override
 	public BookInventory updateBookQuan(String bookId,int updateBy) throws LibraryException
 	{
@@ -154,21 +164,23 @@ public class LibraryDaoImpl implements ILibraryDao {
 			TypedQuery<BookRegistration> query = entityManager.createQuery(qStr, BookRegistration.class);
 			BookRegistration registration = query.getSingleResult();
 			BookTransaction bookTransaction = new BookTransaction();
+			bookTransaction.setIssueDate(Date.valueOf(LocalDate.now()));
 			bookTransaction.setRegistrationId(registrationId);
-			bookTransaction.setReturnDate(null);
+			//bookTransaction.setReturnDate(null);
 
 			entityManager.getTransaction().begin();
 			entityManager.persist(bookTransaction);
-
+			entityManager.getTransaction().commit();
 			qStr = "SELECT t FROM BookInventory t WHERE t.bookId="+registration.getBookId();
 			TypedQuery<BookInventory> query1 = entityManager.createQuery(qStr, BookInventory.class);
 			BookInventory booksInventory = query1.getSingleResult();
-			booksInventory.setNoOfBooks(booksInventory.getNoOfBooks()-1);		
+			booksInventory.setNoOfBooks(booksInventory.getNoOfBooks()-1);
+			entityManager.getTransaction().begin();
 			entityManager.merge(booksInventory);
 			entityManager.getTransaction().commit();
-			
+
 			logger.info("Book issued with registration ID: "+registrationId);
-			
+
 		} catch (NoResultException e) {
 			logger.error(e.getMessage());
 			throw new LibraryException("No such registration Id available");
