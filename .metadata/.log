@@ -835,3 +835,82 @@ Binding(CTRL+SHIFT+ARROW_DOWN,
 
 !ENTRY org.jboss.ide.eclipse.as.core 4 0 2017-11-07 14:58:12.816
 !MESSAGE The server "WildFly 8.x" requires a JDK to run properly. The VM used to launch this server is not recognized as a valid JDK. C:\Program Files (x86)\Java\jre1.8.0_25 
+!SESSION 2017-11-07 15:38:16.584 -----------------------------------------------
+eclipse.buildId=4.4.1.M20140925-0400
+java.version=1.8.0_25
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.jee.product
+Command-line arguments:  -os win32 -ws win32 -arch x86 -product org.eclipse.epp.package.jee.product
+
+!ENTRY org.eclipse.core.resources 2 10035 2017-11-07 15:38:31.181
+!MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
+
+!ENTRY org.eclipse.m2e.logback.configuration 2 0 2017-11-07 15:38:31.446
+!MESSAGE Exception while setting up logging:org.eclipse.osgi.internal.framework.EquinoxConfiguration$1 cannot be cast to java.lang.String
+!STACK 0
+java.lang.ClassCastException: org.eclipse.osgi.internal.framework.EquinoxConfiguration$1 cannot be cast to java.lang.String
+	at org.eclipse.m2e.logback.configuration.LogHelper.logJavaProperties(LogHelper.java:26)
+	at org.eclipse.m2e.logback.configuration.LogPlugin.loadConfiguration(LogPlugin.java:189)
+	at org.eclipse.m2e.logback.configuration.LogPlugin.configureLogback(LogPlugin.java:144)
+	at org.eclipse.m2e.logback.configuration.LogPlugin.access$2(LogPlugin.java:107)
+	at org.eclipse.m2e.logback.configuration.LogPlugin$1.run(LogPlugin.java:62)
+	at java.util.TimerThread.mainLoop(Unknown Source)
+	at java.util.TimerThread.run(Unknown Source)
+
+!ENTRY org.eclipse.jst.jsp.core 4 4 2017-11-07 15:38:34.210
+!MESSAGE A workspace crash was detected. The previous session did not exit normally. Not using saved taglib indexes.
+
+!ENTRY org.eclipse.egit.ui 2 0 2017-11-07 15:38:37.986
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\nishagup'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.jboss.ide.eclipse.as.core 4 0 2017-11-07 15:48:49.581
+!MESSAGE The server's configuration file does not exist: D:\Users\parpatid\Desktop\PDF\Module3\Servlet3.0\WildFly8.1.0\standalone\configuration\standalone.xml
+
+!ENTRY org.jboss.ide.eclipse.as.core 4 0 2017-11-07 15:49:22.065
+!MESSAGE The server's configuration file does not exist: D:\Users\parpatid\Desktop\PDF\Module3\Servlet3.0\WildFly8.1.0\standalone\configuration\standalone.xml
+
+!ENTRY org.jboss.tools.stacks.core 2 0 2017-11-07 15:50:51.241
+!MESSAGE Stacks from https://raw.githubusercontent.com/jboss-developer/jboss-stacks/1.0.0.Final/stacks.yaml can not be read, using client mechanism instead
+
+!ENTRY org.jboss.tools.stacks.core 2 0 2017-11-07 15:50:51.257
+!MESSAGE BarrierProgressWaitJob - loading Stacks Client values
+
+!ENTRY org.jboss.ide.eclipse.as.core 4 0 2017-11-07 15:53:59.524
+!MESSAGE The server "WildFly 8.x" requires a JDK to run properly. The VM used to launch this server is not recognized as a valid JDK. C:\Program Files (x86)\Java\jre1.8.0_25 
+
+!ENTRY org.jboss.ide.eclipse.as.core 4 1644298246 2017-11-07 15:55:23.579
+!MESSAGE Unable to delete module
+!SUBENTRY 1 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2017-11-07 15:55:23.579
+!MESSAGE Could not delete C:\WildFly8.1.0\standalone\deployments\LibraryManagementSystemSpring.war. May be locked by another process.
+!SUBENTRY 2 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2017-11-07 15:55:23.579
+!MESSAGE Could not delete C:\WildFly8.1.0\standalone\deployments\LibraryManagementSystemSpring.war\WEB-INF. May be locked by another process.
+!SUBENTRY 3 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2017-11-07 15:55:23.579
+!MESSAGE Could not delete C:\WildFly8.1.0\standalone\deployments\LibraryManagementSystemSpring.war\WEB-INF\classes. May be locked by another process.
+!SUBENTRY 4 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2017-11-07 15:55:23.579
+!MESSAGE Could not delete C:\WildFly8.1.0\standalone\deployments\LibraryManagementSystemSpring.war\WEB-INF\classes\com. May be locked by another process.
+!SUBENTRY 5 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2017-11-07 15:55:23.579
+!MESSAGE Could not delete C:\WildFly8.1.0\standalone\deployments\LibraryManagementSystemSpring.war\WEB-INF\classes\com\cg. May be locked by another process.
+!SUBENTRY 6 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2017-11-07 15:55:23.579
+!MESSAGE Could not delete C:\WildFly8.1.0\standalone\deployments\LibraryManagementSystemSpring.war\WEB-INF\classes\com\cg. May be locked by another process.
+
+!ENTRY org.jboss.ide.eclipse.as.core 4 1644298246 2017-11-07 16:14:55.916
+!MESSAGE Unable to delete module
+!SUBENTRY 1 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2017-11-07 16:14:55.916
+!MESSAGE Could not delete C:\WildFly8.1.0\standalone\deployments\LibraryManagementSystemSpring.war. May be locked by another process.
+!SUBENTRY 2 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2017-11-07 16:14:55.916
+!MESSAGE Could not delete C:\WildFly8.1.0\standalone\deployments\LibraryManagementSystemSpring.war\WEB-INF. May be locked by another process.
+!SUBENTRY 3 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2017-11-07 16:14:55.916
+!MESSAGE Could not delete C:\WildFly8.1.0\standalone\deployments\LibraryManagementSystemSpring.war\WEB-INF\classes. May be locked by another process.
+!SUBENTRY 4 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2017-11-07 16:14:55.916
+!MESSAGE Could not delete C:\WildFly8.1.0\standalone\deployments\LibraryManagementSystemSpring.war\WEB-INF\classes\com. May be locked by another process.
+!SUBENTRY 5 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2017-11-07 16:14:55.916
+!MESSAGE Could not delete C:\WildFly8.1.0\standalone\deployments\LibraryManagementSystemSpring.war\WEB-INF\classes\com\cg. May be locked by another process.
+!SUBENTRY 6 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2017-11-07 16:14:55.916
+!MESSAGE Could not delete C:\WildFly8.1.0\standalone\deployments\LibraryManagementSystemSpring.war\WEB-INF\classes\com\cg\library. May be locked by another process.
+!SUBENTRY 7 org.jboss.ide.eclipse.as.wtp.core 4 1644298251 2017-11-07 16:14:55.916
+!MESSAGE Could not delete C:\WildFly8.1.0\standalone\deployments\LibraryManagementSystemSpring.war\WEB-INF\classes\com\cg\library. May be locked by another process.

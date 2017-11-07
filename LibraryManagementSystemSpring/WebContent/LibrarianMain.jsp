@@ -1,0 +1,21 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>LibrarianHome</title>
+</head>
+<body>
+	<h1>Welcome to Library Management System</h1>
+	<br>
+	<hr>
+	<h3 align="right">
+		<%-- ${username } --%>Librarian Name </h3>
+	<br><a href="">Display All Books</a> 
+	<br><a href="">Add/Update Book</a> 
+	<br><a href="">View Pending Issue Requests</a> 
+	<br><a href="">Return Book</a> 
+	<br><a href="">Logout</a>
+</body>
+</html>
