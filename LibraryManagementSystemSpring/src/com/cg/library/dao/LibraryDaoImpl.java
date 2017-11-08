@@ -240,4 +240,10 @@ public class LibraryDaoImpl implements ILibraryDao {
 			throw new LibraryException(pe.getMessage());
 		}
 	}
+
+	@Override
+	public Users addUser(Users user) throws LibraryException {
+		entityManager.persist(user);
+		return user;
+	}
 }

@@ -28,4 +28,6 @@ public interface ILibraryService {
 	public abstract void issueBook(int registrationId) throws LibraryException;
 	
 	public abstract List<BookRegistration> getAllRequest() throws LibraryException;
+	
+	public abstract Users addUser(Users user) throws LibraryException;
 }
