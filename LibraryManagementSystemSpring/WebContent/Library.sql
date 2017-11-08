@@ -44,13 +44,13 @@ CREATE TABLE BooksTransaction
 );
 
 
-INSERT INTO USERS values ('100','parag','parag','par@gmail.com','true');
+INSERT INTO USERS values (100,'parag','parag','par@gmail.com','true');
 
-INSERT INTO USERS values ('101','nisha','nisha','nis@gmail.com','true');
+INSERT INTO USERS values (101,'nisha','nisha','nis@gmail.com','true');
 
-INSERT INTO USERS values ('102','akash','akash','akash@gmail.com','false');
+INSERT INTO USERS values (102,'akash','akash','akash@gmail.com','false');
 
-INSERT INTO USERS values ('103','himan','himan','himan@gmail.com','false');
+INSERT INTO USERS values (103,'himan','himan','himan@gmail.com','false');
 
 TRUNCATE table BooksInventory;
 

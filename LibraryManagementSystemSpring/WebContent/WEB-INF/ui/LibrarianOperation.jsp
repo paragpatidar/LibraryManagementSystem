@@ -11,10 +11,11 @@
 	<br>
 	<hr>
 	<h3 align="right"> ${userName } </h3>
-	<br><a href="display.htm?userName=${userName } ">Display All Books</a> 
-	<br><a href="">Add/Update Book</a> 
+	<br><a href="display.htm?userName=${userName} ">Display All Books</a> 
+	<br><a href="addUpdate.htm">Add/Update Book</a> 
 	<br><a href="">View Pending Issue Requests</a> 
 	<br><a href="">Return Book</a> 
-	<br><h4 align="right"><a href="index.jsp?message=You are logged out">Logout</a></h4>
+	<h4>${message }</h4>
+	<br><h4 align="right"><a href="">Logout</a></h4>
 </body>
 </html>

@@ -96,9 +96,7 @@ public class LibraryDaoImpl implements ILibraryDao {
 
 			BookInventory book1 = this.getBookById(book.getBookId());
 			if(book1==null){
-				entityManager.getTransaction().begin();
 				entityManager.persist(book);
-				entityManager.getTransaction().commit();
 				logger.info("Book Inserted with Book ID : "+book.getBookId());
 				}
 			else{
@@ -132,14 +130,12 @@ public class LibraryDaoImpl implements ILibraryDao {
 		BookInventory book = null;
 		try {
 			book = entityManager.find(BookInventory.class, bookId);
-			entityManager.getTransaction().begin();
 			entityManager.remove(book);
-			entityManager.getTransaction().commit();
 			logger.info("Book with Id: "+bookId+" deleted successfully");
 			return book;	
-		} catch (IllegalArgumentException e) {
+		} catch (Exception e) {
 			logger.error(e.getMessage());
-			throw new LibraryException("No Such Book Exists");
+			throw new LibraryException(e.getMessage());
 		}
 	}
 

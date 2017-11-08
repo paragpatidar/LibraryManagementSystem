@@ -29,7 +29,7 @@
 				</c:forEach>
 			</table>
 		</c:if>
-<h4 align="left"><a href="LibraryOperation.jsp?userName=${userName }">Home</a></h4>
-<h4 align="right"><a href="index.jsp?message=You are logged out">Logout</a></h4>
+<h4><a href="">Home</a></h4>
+<h4 align="right"><a href="">Logout</a></h4>
 </body>
 </html>
