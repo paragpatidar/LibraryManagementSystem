@@ -63,7 +63,7 @@ public class LibraryController {
 	@RequestMapping("signUp.htm")
 	public String newUser(Model model){
 		model.addAttribute("user",new Users());
-		model.addAttribute("librarian",new String[]{"Please select","true","false"});
+		model.addAttribute("librarian",new String[]{"Please select","Librarian","Student"});
 		return "SignUp";
 	}
 	

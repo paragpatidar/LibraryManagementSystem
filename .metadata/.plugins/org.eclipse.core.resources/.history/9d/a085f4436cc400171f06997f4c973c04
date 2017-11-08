@@ -8,7 +8,7 @@ DROP TABLE BooksTransaction;
 
 CREATE TABLE Users
 (
-	user_id NUMBER(4) primary key, 
+	user_id VARCHAR2(4) primary key, 
 	user_name VARCHAR2(15), 
 	password VARCHAR2(7), 
 	repeat_password VARCHAR2(7),

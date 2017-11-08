@@ -37,6 +37,7 @@ public class LibraryController {
 			model.addAttribute("message",e.getMessage());
 			return "Error";
 		}
+
 	}
 	
 	/**
@@ -55,24 +56,12 @@ public class LibraryController {
 		}
 	}
 	
-	/**
-	 * Method redirects request to sign up page
-	 * @param model
-	 * @return
-	 */
 	@RequestMapping("signUp.htm")
 	public String newUser(Model model){
 		model.addAttribute("user",new Users());
-		model.addAttribute("librarian",new String[]{"Please select","true","false"});
 		return "SignUp";
 	}
 	
-	/**
-	 * Takes data of new user and persist in table
-	 * @param model
-	 * @param user
-	 * @return
-	 */
 	@RequestMapping(value="/signUp.htm",method=RequestMethod.POST)
 	public String signUp(Model model, @ModelAttribute("user") Users user){
 		try {
