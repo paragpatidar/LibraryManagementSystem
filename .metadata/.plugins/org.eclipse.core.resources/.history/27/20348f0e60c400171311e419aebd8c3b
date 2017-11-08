@@ -17,9 +17,8 @@ public class LibraryController {
 	
 	@Autowired
 	ILibraryService service;
-	
 	@RequestMapping(value="/display")
-	public String displayBook(Model m)//,@RequestParam("userName") String userName)
+	public String displayBook(Model m//,@RequestParam("userName") String userName)
 	{
 		try
 		{

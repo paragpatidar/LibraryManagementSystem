@@ -5,32 +5,31 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Issue/return</title>
+<title>Insert title here</title>
 </head>
 <body>
-<c:if test="${reqPList ne null}">
+<c:if test="${reqIList ne null}">
 			<table border="1">
 				<tr>
 					<th>Registration Id</th>
 					<th>Book Id</th>
 					<th>User Id</th>
 					<th>Registration Date</th>
-					<th>Status</th>
+					<th>Status
 				</tr>
-				<c:forEach items="${reqPList}" var="req">
+				<c:forEach items="${reqIList}" var="req">
 					<tr>
 						<td>${req.registrationId}</td>
 						<td>${req.bookId}</td>
 						<td>${req.userId}</td>
 						<td>${req.registrationDate}</td>
 						<td>${req.status}</td>
-						<td><a href="">Issue</a></td>
+						<td><a href="">Return</a></td>
 					</tr>
 				</c:forEach>
 			</table>
 		</c:if>
-<a href="LibraryMain.jsp<%-- ?userName=${userName } --%>">Home</a>
-<a href="">Logout</a>		
-		
+<a href="">Home</a>
+<a href="">Logout</a>
 </body>
 </html>

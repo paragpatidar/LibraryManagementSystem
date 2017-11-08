@@ -12,22 +12,22 @@
 	<br>
 	<hr>
 	<h3 align="right">
-		<%-- ${userName } --%>Librarian Name </h3>
+		<%-- ${username } --%>Librarian Name </h3>
 <table border="1">
 <tr><th>Book Id<th>Book Name<th>Author 1<th>Author 2<th>Publisher<th>Year of Publication<th>Quantity
 <c:forEach items="" var="book">
 <tr>
-<td>${book.bookId}
-<td>${book.bookName}
-<td>${book.author1}
-<td>${book.author2}
-<td>${book.publisher}
-<td>${book.yearOfPublication}
-<td>${book.noOfBooks}
-<td><a href="delete.htm?bookId=${book.bookId}">Delete</a>
+<td>{book.bookId}
+<td>{book.bookName}
+<td>{book.author1}
+<td>{book.author2}
+<td>{book.publisher}
+<td>{book.yearOfPublication}
+<td>{book.noOfBooks}
+<td><a href="">Delete</a>
 </c:forEach>
 </table>
-<a href="LibraryMain.jsp<%-- ?userName=${userName } --%>">Home</a>
+<a href="">Home</a>
 <a href="">Logout</a>
 </body>
 </html>

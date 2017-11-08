@@ -11,8 +11,8 @@
 	<br>
 	<hr>
 	<h3 align="right">
-		<%-- ${userName } --%>Librarian Name </h3>
-	<br><a href="display.htm<%-- ?userName=${userName } --%>">Display All Books</a> 
+		<%-- ${username } --%>Librarian Name </h3>
+	<br><a href="display.htm">Display All Books</a> 
 	<br><a href="">Add/Update Book</a> 
 	<br><a href="">View Pending Issue Requests</a> 
 	<br><a href="">Return Book</a> 

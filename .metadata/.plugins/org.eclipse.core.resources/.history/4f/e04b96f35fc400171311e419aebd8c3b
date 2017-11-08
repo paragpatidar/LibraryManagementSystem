@@ -62,7 +62,7 @@ Enter book Id:<input type="text" name="bookId"/>
 			<tr><input type="submit" value="Add Book"/>
 			</table>
 		</form>		
-<a href="LibraryMain.jsp<%-- ?userName=${userName } --%>">Home</a>
+<a href="">Home</a>
 <a href="">Logout</a>
 </body>
 </html>
