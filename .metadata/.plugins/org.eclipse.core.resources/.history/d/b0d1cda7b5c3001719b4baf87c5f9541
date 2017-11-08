@@ -1,0 +1,58 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>    
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>Welcome to Library Management System</h1>
+	<br>
+	<hr>
+	<h3 align="right">
+		<%-- ${username } --%>Librarian Name </h3>
+		<tr><th>Book Name<th>Author 1<th>Author 2<th>Publisher<th>Year of Publication<th>Quantity
+<form:form action="" modelAttribute="" method="post">
+			<form:label path="bookId">Book Id:</form:label>
+			<form:input path="bookId" required="true"/>
+			<br/>
+			
+			<form:label path="bookName">Book Name:</form:label>
+			<form:input path="bookName" required="true"/>
+			<br/>
+			
+			<form:label path="author1">Author 1:</form:label>
+			<form:input path="author1" required="true"/>
+			<br/>
+			
+			<form:label path="author2">Author 2:</form:label>
+			<form:input path="author2" required="true"/>
+			<br/>
+			
+			<form:label path="publisher">Publisher:</form:label>
+			<form:input path="publisher" required="true"/>
+			<br/>
+			
+			<form:label path="yearOfPublication">Year of Publication:</form:label>
+			<form:input path="yearOfPublication" required="true"/>
+			<br/>
+			
+			<button type="submit">Add Trainee</button>
+		</form:form>		
+private String bookId;
+	@Column(name="book_name")
+	private String bookName;
+	@Column(name="author1")
+	private String author1;
+	@Column(name="author2")
+	private String author2;
+	@Column(name="publisher")
+	private String publisher;
+	@Column(name="yearofpublication")
+	private String yearOfPublication;
+	@Column(name="no_Of_Book")
+	private Integer noOfBooks;
+</body>
+</html>

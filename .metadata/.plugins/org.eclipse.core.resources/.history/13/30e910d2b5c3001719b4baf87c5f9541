@@ -1,0 +1,77 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> 
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>    
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>Welcome to Library Management System(Add Book)</h1>
+	<br>
+	<hr>
+	<h3 align="right">
+		<%-- ${username } --%>Librarian Name </h3>
+		<form action="">
+Enter book Id:<input type="text" name="bookId"/>
+<br><input type="submit" value="Add/update"/>
+
+<form:form action="" modelAttribute="" method="post">
+			<form:label path="bookId">Book Id:</form:label>
+			<form:input path="bookId" required="true"/>
+			<br/>
+			<c:if test="${trainee ne null}"></c:if>
+			<form:label path="bookName">Book Name:</form:label>
+			<form:input path="bookName" required="true"/>
+			<br/>
+			
+			<form:label path="author1">Author 1:</form:label>
+			<form:input path="author1" required="true"/>
+			<br/>
+			
+			<form:label path="author2">Author 2:</form:label>
+			<form:input path="author2" required="true"/>
+			<br/>
+			
+			<form:label path="publisher">Publisher:</form:label>
+			<form:input path="publisher" required="true"/>
+			<br/>
+			
+			<form:label path="yearOfPublication">Year of Publication:</form:label>
+			<form:input path="yearOfPublication" required="true"/>
+			<br/>
+			
+			<form:label path="noOfBooks">No. Of Books:</form:label>
+			<form:input path="noOfBooks" required="true"/>
+			<br/>
+			
+			<button type="submit">Add Book</button>
+		</form:form>
+		
+		<form action="" method="post">
+			<input type="text" name="bookId" value=${book.bookId} required/>
+			<br>
+			<input type="text" name="bookName" value=${book.bookName} required/>
+			<br>
+			
+			<input type="text" name="author1" value=${book.author1} required/>
+			<br/>
+			
+			<input type="text" name="author2" value=${book.author2} required/>
+			<br/>
+			
+			<input type="text" name="publisher" value=${book.publisher} required/>
+			<br/>
+			
+		    <input type="text" name="yearOfPublication" value=${book.yearOfPublication} required/>
+			<br/>
+			<input type="number" path="noOfBooks" value=${book.noOfbooks} required/>
+			<br/>
+			
+			<input type="submit" value="Add Book"/>
+		</form>		
+
+</body>
+</html>
