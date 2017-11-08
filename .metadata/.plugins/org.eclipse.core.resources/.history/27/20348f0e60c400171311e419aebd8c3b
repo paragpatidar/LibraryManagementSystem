@@ -1,0 +1,36 @@
+package com.cg.library.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.cg.library.entities.BookInventory;
+import com.cg.library.exception.LibraryException;
+import com.cg.library.service.ILibraryService;
+
+@Controller
+public class LibraryController {
+	
+	@Autowired
+	ILibraryService service;
+	@RequestMapping(value="/display")
+	public String displayBook(Model m//,@RequestParam("userName") String userName)
+	{
+		try
+		{
+			List<BookInventory> allBook=service.getAllBooks();
+			m.addAttribute("allBook", allBook);
+			//m.addAttribute("userName", userName);
+		}
+		catch(LibraryException le)
+		{
+			
+		}
+		return "DisplayBook";
+	}
+	
+}
