@@ -1,16 +1,14 @@
 package com.cg.library.controller;
 
 
-import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-
-import com.cg.library.entities.BookInventory;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.cg.library.entities.Users;
 import com.cg.library.exception.LibraryException;
@@ -22,24 +20,6 @@ public class LibraryController {
 	@Autowired
 	ILibraryService service;
 	
-
-	@RequestMapping(value="/display")
-	public String displayBook(Model model,@RequestParam("userName") String userName)
-	{
-		try
-		{
-			List<BookInventory> allBook=service.getAllBooks();
-			model.addAttribute("allBook", allBook);
-			model.addAttribute("userName", userName);
-		}
-		catch(LibraryException le)
-		{
-			model.addAttribute("message",le.getMessage());
-			return "Error";
-		}
-		return "DisplayBook";
-	}
-
 	/**
 	 * Method used for validating user
 	 * @param model
@@ -50,12 +30,9 @@ public class LibraryController {
 	@RequestMapping(value="/login.htm",method=RequestMethod.POST)
 	public String login(Model model,@RequestParam("userName") String userName, @RequestParam("password") String password){
 		try {
-			int i=service.validateUser(userName, password);
+			service.validateUser(userName, password);
 			model.addAttribute("userName", userName);
-			if(i==0)
-			  return "StudentOperation";
-			else
-			  return "LibrarianOperation";	
+			return "StudentOperation";
 		} catch (LibraryException e) {
 			model.addAttribute("message",e.getMessage());
 			return "Error";
@@ -86,7 +63,6 @@ public class LibraryController {
 	@RequestMapping("signUp.htm")
 	public String newUser(Model model){
 		model.addAttribute("user",new Users());
-		model.addAttribute("librarian",new String[]{"Please select","true","false"});
 		return "SignUp";
 	}
 	
@@ -109,5 +85,5 @@ public class LibraryController {
 
 	}
 	
-
+	
 }
