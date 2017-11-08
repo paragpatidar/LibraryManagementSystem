@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 INDEX VERSION 1.3+D:\LibraryManagement\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
 669575790.index
 4060057325.index
@@ -8,3 +9,16 @@ INDEX VERSION 1.3+D:\LibraryManagement\.metadata\.plugins\org.eclipse.wst.jsdt.c
 1792205984.index
 1635158221.index
 988807553.index
+=======
+INDEX VERSION 1.3+D:\LMS\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+4114903525.index
+4060057325.index
+4060057325.index
+3125956774.index
+1792205984.index
+272695629.index
+1635158221.index
+1914135943.index
+3589882819.index
+1086912555.index
+>>>>>>> ebc2713a114f04dd57b2b34dbf1c4db721a3dd08

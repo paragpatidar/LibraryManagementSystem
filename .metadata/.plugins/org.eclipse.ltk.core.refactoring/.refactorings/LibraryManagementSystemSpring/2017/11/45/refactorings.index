@@ -5,3 +5,5 @@
 1510124879584	Move 'Library.sql' to 'WebContent'
 1510133125600	Move 'AddBook.jsp' to 'ui'
 1510133140848	Move 4 resources to 'ui'
+1510134948757	Rename resource 'LibrarianMain.jsp'
+1510137518067	Delete element

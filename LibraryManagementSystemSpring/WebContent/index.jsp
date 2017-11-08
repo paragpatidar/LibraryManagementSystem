@@ -42,5 +42,6 @@ th, td {
 	</form>
 	<h4 align="right"><a href="signUp.htm">New User!!</a></h4>
 	</div>
+	<h3>${message }</h3>
 </body>
 </html>

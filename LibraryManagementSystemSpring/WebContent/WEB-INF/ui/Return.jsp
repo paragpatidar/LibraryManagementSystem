@@ -29,7 +29,7 @@
 				</c:forEach>
 			</table>
 		</c:if>
-<a href="LibraryMain.jsp<%-- ?userName=${userName } --%>">Home</a>
-<a href="">Logout</a>
+<h4><a href="">Home</a></h4>
+<h4 align="right"><a href="">Logout</a></h4>
 </body>
 </html>
