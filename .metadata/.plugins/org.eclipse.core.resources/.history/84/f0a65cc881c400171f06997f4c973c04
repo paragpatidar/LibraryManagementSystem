@@ -1,0 +1,5 @@
+package com.cg.library.dao;
+
+public class QueryMapper {
+
+}

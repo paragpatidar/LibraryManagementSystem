@@ -32,9 +32,6 @@ public class LibraryDaoImpl implements ILibraryDao {
 	@PersistenceContext
 	private EntityManager entityManager;
 	
-	/**
-	 * @param String Id
-	 */
 	@Override
 	public BookInventory getBookById(String id) {
 		BookInventory book = entityManager.find(BookInventory.class, id);

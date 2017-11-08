@@ -32,9 +32,6 @@ public class LibraryDaoImpl implements ILibraryDao {
 	@PersistenceContext
 	private EntityManager entityManager;
 	
-	/**
-	 * @param String Id
-	 */
 	@Override
 	public BookInventory getBookById(String id) {
 		BookInventory book = entityManager.find(BookInventory.class, id);
@@ -72,10 +69,8 @@ public class LibraryDaoImpl implements ILibraryDao {
 	public int validateUser(String userName, String password) throws LibraryException{
 
 		try {
-			//String qStr = "SELECT u FROM Users u WHERE u.userName='"+userName+"' AND u.password='"+password+"'";
-			TypedQuery<Users> query = entityManager.createQuery(QueryMapper.validateUser, Users.class);
-			query.setParameter("puserName", userName);
-			query.setParameter("ppassword",password);
+			String qStr = "SELECT u FROM Users u WHERE u.userName='"+userName+"' AND u.password='"+password+"'";
+			TypedQuery<Users> query = entityManager.createQuery(qStr, Users.class);
 			Users user1 = query.getSingleResult();
 			user = user1;
 			logger.info("Valid User with user ID : "+user1.getUserId());
