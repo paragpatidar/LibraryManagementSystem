@@ -8,10 +8,16 @@
 <title>Display Book</title>
 </head>
 <body>
+<h1>Welcome to Library Management System(Display Books)</h1>
+	<br>
+	<hr>
+	<h3 align="right">
+		<%-- ${username } --%>Librarian Name </h3>
 <table border="1">
-<tr><th>Book Name<th>Author 1<th>Author 2<th>Publisher<th>Year of Publication<th>Quantity
+<tr><th>Book Id<th>Book Name<th>Author 1<th>Author 2<th>Publisher<th>Year of Publication<th>Quantity
 <c:forEach items="" var="book">
 <tr>
+<td>{book.bookId}
 <td>{book.bookName}
 <td>{book.author1}
 <td>{book.author2}
