@@ -26,17 +26,18 @@ public class LibraryController {
 	
 
 	@RequestMapping(value="/display")
-	public String displayBook(Model m)//,@RequestParam("userName") String userName)
+	public String displayBook(Model model,@RequestParam("userName") String userName)
 	{
 		try
 		{
 			List<BookInventory> allBook=service.getAllBooks();
-			m.addAttribute("allBook", allBook);
-			//m.addAttribute("userName", userName);
+			model.addAttribute("allBook", allBook);
+			model.addAttribute("userName", userName);
 		}
 		catch(LibraryException le)
 		{
-			
+			model.addAttribute("message",le.getMessage());
+			return "Error";
 		}
 		return "DisplayBook";
 	}
@@ -51,9 +52,12 @@ public class LibraryController {
 	@RequestMapping(value="/login.htm",method=RequestMethod.POST)
 	public String login(Model model,@RequestParam("userName") String userName, @RequestParam("password") String password){
 		try {
-			service.validateUser(userName, password);
+			int i=service.validateUser(userName, password);
 			model.addAttribute("userName", userName);
-			return "StudentOperation";
+			if(i==0)
+			  return "StudentOperation";
+			else
+			  return "LibrarianOperation";	
 		} catch (LibraryException e) {
 			model.addAttribute("message",e.getMessage());
 			return "Error";

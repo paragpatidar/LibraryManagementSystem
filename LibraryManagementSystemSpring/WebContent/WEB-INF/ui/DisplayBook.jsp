@@ -11,23 +11,21 @@
 <h1>Welcome to Library Management System(Display Books)</h1>
 	<br>
 	<hr>
-	<h3 align="right">
-		<%-- ${userName } --%>Librarian Name </h3>
+	<h3 align="right">${userName }</h3>
 <table border="1">
-<tr><th>Book Id<th>Book Name<th>Author 1<th>Author 2<th>Publisher<th>Year of Publication<th>Quantity
-<c:forEach items="" var="book">
+<tr><th>Book Id<th>Book Name<th>Author<th>Publisher<th>Year of Publication<th>Quantity
+<c:forEach items="${allBook }" var="book">
 <tr>
 <td>${book.bookId}
 <td>${book.bookName}
-<td>${book.author1}
-<td>${book.author2}
+<td>${book.author}
 <td>${book.publisher}
 <td>${book.yearOfPublication}
 <td>${book.noOfBooks}
 <td><a href="delete.htm?bookId=${book.bookId}">Delete</a>
 </c:forEach>
 </table>
-<a href="LibraryMain.jsp<%-- ?userName=${userName } --%>">Home</a>
-<a href="">Logout</a>
+<h4 align="left"><a href="LibraryOperation.jsp?userName=${userName }">Home</a></h4>
+<h4 align="right"><a href="index.jsp?message=You are logged out">Logout</a></h4>
 </body>
 </html>
