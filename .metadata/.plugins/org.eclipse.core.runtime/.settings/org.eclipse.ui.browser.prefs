@@ -1,3 +1,7 @@
 browsers=<?xml version\="1.0" encoding\="UTF-8"?>\r\n<web-browsers current\="0">\r\n<system/>\r\n<external location\="C\:\\Program Files (x86)\\Internet Explorer\\iexplore.exe" name\="Internet Explorer"/>\r\n</web-browsers>
 eclipse.preferences.version=1
+<<<<<<< HEAD
+internalWebBrowserHistory=http\://localhost\:9090/LibraryManagementSystemSpring/signUp.htm|*|http\://localhost\:9090/LibraryManagementSystemSpring/index.jsp|*|http\://localhost\:9090/LibraryManagementSystemSpring/newUser.htm|*|http\://localhost\:9090/LibraryManagementSystemSpring/login.htm|*|http\://localhost\:9090/LibraryManagementSystemSpring/showAll.htm|*|http\://localhost\:9090/LibraryManagementSystemSpring/WEB-INF/ui/BookSearch.jsp|*|http\://localhost\:9090/LibraryManagementSystemSpring/|*|
+=======
 internalWebBrowserHistory=http\://localhost\:9090/LibraryManagementSystemSpring/WEB-INF/AddBook.jsp|*|http\://localhost\:9090/LibraryManagementSystemSpring/DisplayBook.jsp|*|http\://localhost\:9090/LibraryManagementSystemSpring/LibrarianMain.jsp|*|http\://localhost\:9090/LibraryManagementSystemSpring/|*|
+>>>>>>> f246327c15c397188c4b31af87d8652f56d1060a

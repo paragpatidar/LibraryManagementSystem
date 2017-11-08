@@ -1,7 +1,7 @@
 package com.cg.library.controller;
 
-import java.util.List;
 
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,6 +9,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.cg.library.entities.BookInventory;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.cg.library.entities.Users;
 import com.cg.library.exception.LibraryException;
 import com.cg.library.service.ILibraryService;
 
@@ -18,6 +24,7 @@ public class LibraryController {
 	@Autowired
 	ILibraryService service;
 	
+
 	@RequestMapping(value="/display")
 	public String displayBook(Model m)//,@RequestParam("userName") String userName)
 	{
@@ -33,5 +40,61 @@ public class LibraryController {
 		}
 		return "DisplayBook";
 	}
+
+	/**
+	 * Method used for validating user
+	 * @param model
+	 * @param userName
+	 * @param password
+	 * @return
+	 */
+	@RequestMapping(value="/login.htm",method=RequestMethod.POST)
+	public String login(Model model,@RequestParam("userName") String userName, @RequestParam("password") String password){
+		try {
+			service.validateUser(userName, password);
+			model.addAttribute("userName", userName);
+			return "StudentOperation";
+		} catch (LibraryException e) {
+			model.addAttribute("message",e.getMessage());
+			return "Error";
+		}
+
+	}
 	
+	/**
+	 * Method for handling show all book request
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/showAll.htm")
+	public String showAllBooks(Model model){
+		try {
+			model.addAttribute("bookList",service.getAllBooks());
+			return "BookSearch";
+		} catch (LibraryException e) {
+			model.addAttribute("message",e.getMessage());
+			return "Error";
+		}
+	}
+	
+	@RequestMapping("signUp.htm")
+	public String newUser(Model model){
+		model.addAttribute("user",new Users());
+		return "SignUp";
+	}
+	
+	@RequestMapping(value="/signUp.htm",method=RequestMethod.POST)
+	public String signUp(Model model, @ModelAttribute("user") Users user){
+		try {
+			user = service.addUser(user);
+			model.addAttribute("message", "User added with user Id = "+user.getUserId());
+			return "Success";
+		} catch (LibraryException e) {
+			model.addAttribute("message",e.getMessage());
+			return "Error";
+		}
+
+	}
+	
+
 }

@@ -1,0 +1,18 @@
+package com.cg.library.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.cg.library.service.ILibraryService;
+
+@Controller
+public class LibraryController {
+	
+	@Autowired
+	ILibraryService service;
+	
+	@RequestMapping(value="/login",method=RequestMethod.POST)
+	public String 
+	
+}

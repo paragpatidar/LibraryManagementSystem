@@ -76,4 +76,9 @@ public class LibraryServiceImpl implements ILibraryService {
 	public List<BookRegistration> getAllRequest() throws LibraryException {
 		return dao.getAllRequest();
 	}
+	@Override
+	public Users addUser(Users user) throws LibraryException {
+		
+		return dao.addUser(user);
+	}
 }
