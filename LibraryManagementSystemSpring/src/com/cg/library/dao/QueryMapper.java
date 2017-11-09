@@ -1,0 +1,8 @@
+package com.cg.library.dao;
+
+public class QueryMapper {
+	
+	static final String getCountOfBooks = "SELECT t FROM BookInventory t WHERE t.bookId=";
+	static final String validateUser = "SELECT u FROM Users u WHERE u.userName=:puserName AND u.password=:ppassword";
+
+}
