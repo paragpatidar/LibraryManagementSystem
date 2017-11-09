@@ -34,5 +34,9 @@ public interface ILibraryDao {
 	public abstract int getCountOfBooks(String bookId) throws LibraryException;
 
 	public abstract List<BookRegistration> getAllRequest() throws LibraryException;
+	
+	public abstract String searchBookByAuthor(String author);
+	
+	public abstract String searchBookByName(String bookName);
 
 }

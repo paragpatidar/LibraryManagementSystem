@@ -76,4 +76,16 @@ public class LibraryServiceImpl implements ILibraryService {
 	public List<BookRegistration> getAllRequest() throws LibraryException {
 		return dao.getAllRequest();
 	}
+
+	@Override
+	public String searchBookByAuthor(String author) {
+	
+		return dao.searchBookByAuthor(author);
+	}
+
+	@Override
+	public String searchBookByName(String bookName) {
+
+		return dao.searchBookByName(bookName);
+	}
 }

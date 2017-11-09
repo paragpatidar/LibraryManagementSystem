@@ -57,12 +57,12 @@ public class Client {
 								System.out.println("Enter Book Name -");
 								String bookName = sb.nextLine();
 								bookNew.setBookName(bookName);
-								System.out.println("Enter Book Author 1 -");
-								String author1 = sb.nextLine();
-								bookNew.setAuthor1(author1);
-								System.out.println("Enter Book Author 2 -");
+								System.out.println("Enter Book Author -");
+								String author = sb.nextLine();
+								bookNew.setAuthor(author);
+	/*							System.out.println("Enter Book Author 2 -");
 								String author2 = sb.nextLine();
-								bookNew.setAuthor2(author2);
+								bookNew.setAuthor2(author2);*/
 								System.out.println("Enter Book Publisher -");
 								String publisher = sb.nextLine();
 								bookNew.setPublisher(publisher);

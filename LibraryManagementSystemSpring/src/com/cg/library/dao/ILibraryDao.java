@@ -36,5 +36,9 @@ public interface ILibraryDao {
 	public abstract List<BookRegistration> getAllRequest() throws LibraryException;
 
 	public abstract Users addUser(Users user) throws LibraryException;
+	
+	public abstract List<BookInventory> searchBookByAuthor(String author);
+	
+	public abstract  List<BookInventory> searchBookByName(String bookName);
 
 }

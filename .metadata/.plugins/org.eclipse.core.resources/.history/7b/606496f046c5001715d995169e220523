@@ -1,0 +1,121 @@
+package com.cg.library.entities;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+@Entity
+@Table(name = "booksInventory")
+@NamedQueries(@NamedQuery(name = "getAllBooks", query = "SELECT bookInventory FROM BookInventory bookInventory"))
+public class BookInventory {
+	
+	@Id
+	@Column(name="book_id")
+	@NotNull(message="Book ID is required")
+    String bookId;
+	@Column(name="book_name")
+	@NotNull(message="Book Name is required")
+	 String bookName;
+	@Column(name="author")
+	@NotNull(message="Book Author Name is required")
+	String author;
+	@Column(name="publisher")
+	@NotNull(message="Book Publisher is required")
+	 String publisher;
+	@Column(name="year_of_publication")
+	@NotNull(message="Book Publication Year is required")
+	String yearOfPublication;
+	@NotNull(message="Number of Books are required")
+	@Column(name="no_Of_Book")
+	 Integer noOfBooks;
+
+	public String getBookId() {
+		return bookId;
+	}
+
+
+
+	public void setBookId(String bookId) {
+		this.bookId = bookId;
+	}
+
+
+
+	public String getBookName() {
+		return bookName;
+	}
+
+
+
+	public void setBookName(String bookName) {
+		this.bookName = bookName;
+	}
+
+
+
+	public String getAuthor() {
+		return author;
+	}
+
+
+
+	public void setAuthor(String author) {
+		this.author = author;
+	}
+
+
+
+	public String getPublisher() {
+		return publisher;
+	}
+
+
+
+	public void setPublisher(String publisher) {
+		this.publisher = publisher;
+	}
+
+
+
+	public String getYearOfPublication() {
+		return yearOfPublication;
+	}
+
+
+
+	public void setYearOfPublication(String yearOfPublication) {
+		this.yearOfPublication = yearOfPublication;
+	}
+
+
+
+	public Integer getNoOfBooks() {
+		return noOfBooks;
+	}
+
+
+
+	public void setNoOfBooks(Integer noOfBooks) {
+		this.noOfBooks = noOfBooks;
+	}
+
+
+
+	@Override
+	public String toString() {
+		return "Book Id : " + bookId + ", Book Name : " + bookName
+				+ ", Author1 : " + author
+				+ ", Publisher : " + publisher + ", Year of Publication : "
+				+ yearOfPublication + ", No of Books : " + noOfBooks;
+	}
+
+}
+	
+
+	
+
+

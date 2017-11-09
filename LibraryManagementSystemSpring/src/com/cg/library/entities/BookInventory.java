@@ -6,6 +6,9 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "booksInventory")
@@ -14,19 +17,33 @@ public class BookInventory {
 	
 	@Id
 	@Column(name="book_id")
-	private String bookId;
-	@Column(name="book_name")
-	private String bookName;
-	@Column(name="author")
-	private String author;
-	@Column(name="publisher")
-	private String publisher;
-	@Column(name="year_of_publication")
-	private String yearOfPublication;
-	@Column(name="no_Of_Book")
-	private Integer noOfBooks;
-
+	@NotNull(message="Book ID is required")
+	@Pattern(regexp="[0-9]{4}",message="Book Id maximum length can be of 4 characters")
+    String bookId;
 	
+	@Column(name="book_name")
+	@NotNull(message="Book Name is required")
+	@Size(max=10,message="Maximum 20 characters required")
+	 String bookName;
+	
+	@Column(name="author")
+	@NotNull(message="Book Author Name is required")
+	@Pattern(regexp="[a-zA-Z]{10}",message="Book Author name maximum length can be of 10 characters")
+	String author;
+	
+	@Column(name="publisher")
+	@NotNull(message="Book Publisher is required")
+	@Pattern(regexp="[a-zA-Z]{10}",message="Book Publisher maximum length can be of 4 characters")
+	 String publisher;
+	
+	@Column(name="year_of_publication")
+	@NotNull(message="Book Publication Year is required")
+	String yearOfPublication;
+	
+	@NotNull(message="Number of Books are required")
+	@Column(name="no_Of_Book")
+	@Size(max=5,message="Maximum 5 Books can be issued")
+	Integer noOfBooks;
 
 	public String getBookId() {
 		return bookId;
@@ -110,7 +127,7 @@ public class BookInventory {
 
 }
 	
-	
+
 	
 
 

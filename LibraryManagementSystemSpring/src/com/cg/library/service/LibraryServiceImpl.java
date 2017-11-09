@@ -81,4 +81,14 @@ public class LibraryServiceImpl implements ILibraryService {
 		
 		return dao.addUser(user);
 	}
+	@Override
+	public List<BookInventory> searchBookByAuthor(String author) {
+	
+		return dao.searchBookByAuthor(author);
+	}
+	@Override
+	public List<BookInventory> searchBookByName(String bookName) {
+	
+		return dao.searchBookByName(bookName);
+	}
 }

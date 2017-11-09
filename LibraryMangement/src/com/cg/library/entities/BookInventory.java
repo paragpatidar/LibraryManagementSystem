@@ -17,10 +17,9 @@ public class BookInventory {
 	private String bookId;
 	@Column(name="book_name")
 	private String bookName;
-	@Column(name="author1")
-	private String author1;
-	@Column(name="author2")
-	private String author2;
+	@Column(name="author")
+	private String author;
+
 	@Column(name="publisher")
 	private String publisher;
 	@Column(name="yearofpublication")
@@ -29,14 +28,7 @@ public class BookInventory {
 	private Integer noOfBooks;
 
 	
-	
-	public String getAuthor2() {
-		return author2;
-	}
 
-	public void setAuthor2(String author2) {
-		this.author2 = author2;
-	}
 
 	public String getPublisher() {
 		return publisher;
@@ -70,12 +62,12 @@ public class BookInventory {
 		this.bookName = bookName;
 	}
 	
-	public String getAuthor1() {
-		return author1;
+	public String getAuthor() {
+		return author;
 	}
 	
-	public void setAuthor1(String author1) {
-		this.author1 = author1;
+	public void setAuthor(String author1) {
+		this.author = author;
 	}
 
 	public int getNoOfBooks() {
@@ -90,7 +82,7 @@ public class BookInventory {
 	@Override
 	public String toString() {
 		return "Book Id : " + bookId + ", Book Name : " + bookName
-				+ ", Author1 : " + author1 + ", Author2 : " + author2
+				+ ", Author : " + author 
 				+ ", Publisher : " + publisher + ", Year of Publication : "
 				+ yearOfPublication + ", No of Books : " + noOfBooks;
 	}

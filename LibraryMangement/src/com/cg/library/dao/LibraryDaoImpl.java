@@ -237,4 +237,21 @@ public class LibraryDaoImpl implements ILibraryDao {
 			throw new LibraryException(pe.getMessage());
 		}
 	}
+	@Override
+	public String searchBookByAuthor(String author){
+		String qstr="SELECT l FROM BookInventory l WHERE l.author='"+author+"'";
+		TypedQuery<BookInventory> query = entityManager.createQuery(qstr,BookInventory.class);
+		BookInventory bookInventory = query.getSingleResult();
+		return bookInventory. getAuthor();
+		
+	}
+	
+	@Override
+	public String searchBookByName(String bookName){
+		String qstr="SELECT l FROM BookInventory l WHERE l.bookName LIKE'%bookName%'";
+		TypedQuery<BookInventory> query = entityManager.createQuery(qstr,BookInventory.class);
+		BookInventory bookInventory = query.getSingleResult();
+		return bookInventory.getBookName();
+		
+	}
 }

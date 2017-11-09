@@ -24,27 +24,33 @@
 		<form:form action="onAdd.htm" modelAttribute="book" method="post">
 			<form:label path="bookId">Book Id:</form:label>
 			<form:input path="bookId" value="${book.bookId}" required="true"/>
+            <form:errors path="bookId" cssStyle="color:red"/> 
 			<br/>
 			<form:label path="bookName">Book Name:</form:label>
 			<form:input path="bookName" value="${book.bookName}" required="true" />
+			<form:errors path="bookName" cssStyle="color:red"/> 
 			<br />
 			<form:label path="author">Author 2:</form:label>
 			<form:input path="author" value="${book.author}" required="true" />
+			<form:errors path="author" cssStyle="color:red"/> 
 			<br />
 
 			<form:label path="publisher">Publisher:</form:label>
 			<form:input path="publisher" value="${book.publisher}"
 				required="true" />
+		    <form:errors path="publisher" cssStyle="color:red"/> 
 			<br />
 
 			<form:label path="yearOfPublication">Year of Publication:</form:label>
 			<form:input path="yearOfPublication"
 				value="${book.yearOfPublication}" required="true" />
+		    <form:errors path="yearOfPublication" cssStyle="color:red"/> 
 			<br />
 
 			<form:label path="noOfBooks">No. Of Books:</form:label>
 			<form:input path="noOfBooks" value="${book.noOfBooks}"
 				required="true" />
+			<form:errors path="noOfBooks" cssStyle="color:red"/> 
 			<br />
 			<button type="submit">Add Book</button>
 
